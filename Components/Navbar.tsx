@@ -1,7 +1,7 @@
 "use client";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import ToggleTheme from "./ToggleTheme";
+import ModeToggle from "./ToggleTheme";
 
 import { Menubar, MenubarMenu, MenubarTrigger } from "./ui/menubar";
 
@@ -13,9 +13,7 @@ function Navbar() {
       <div className="rounded-full border-2 p-1 h-full">
         <Image
           className="w-auto h-full"
-          src={
-            theme == "dark" ? "/darkmode_logo_small.png" : "/lightmode_logo.png"
-          }
+          src={"/lightmode_logo.png"}
           alt="Clement Ojiguo logo"
           width={0}
           height={0}
@@ -35,7 +33,7 @@ function Navbar() {
         </Menubar>
       </nav>
 
-      <ToggleTheme />
+      <ModeToggle />
     </div>
   );
 }

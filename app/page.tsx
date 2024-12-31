@@ -1,7 +1,8 @@
+import Card from "@/Components/Card";
 import RecentWorks from "@/Components/RecentWorks";
 import { Badge } from "@/Components/ui/badge";
 import { Button } from "@/Components/ui/button";
-import { Plus, Copy } from "lucide-react";
+import { Plus, Copy, CodeXml, Brush, MonitorSmartphone } from "lucide-react";
 
 export default function Home() {
   return (
@@ -48,8 +49,22 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="my-4">
-        <RecentWorks />
+      <div className="gap-4 grid grid-flow-col grid-cols-2">
+        <div>
+          <RecentWorks />
+        </div>
+
+        <div className="space-y-4">
+          <Card text="Web and Mobile Development" icon={<CodeXml />} />
+          <div className="grid grid-flow-col grid-cols-2 gap-4">
+            <Card text="UI Design" icon={<Brush />} />
+            <Card
+              text="UX Implementation"
+              icon={<MonitorSmartphone />}
+              borderDirection
+            />
+          </div>
+        </div>
       </div>
     </main>
   );
