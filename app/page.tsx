@@ -1,4 +1,5 @@
 import Card from "@/Components/Card";
+import ProjectCard from "@/Components/ProjectCard";
 import RecentWorks from "@/Components/RecentWorks";
 import { Badge } from "@/Components/ui/badge";
 import { Button } from "@/Components/ui/button";
@@ -49,23 +50,51 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="gap-4 grid grid-flow-col grid-cols-2">
+      <div className="gap-4 grid md:grid-cols-2 ">
         <div>
           <RecentWorks />
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 md:col-start-2">
           <Card text="Web and Mobile Development" icon={<CodeXml />} />
           <div className="grid grid-flow-col grid-cols-2 gap-4">
             <Card text="UI Design" icon={<Brush />} />
             <Card
               text="UX Implementation"
               icon={<MonitorSmartphone />}
-              borderDirection
+              borderLeft
             />
           </div>
         </div>
+
+        <div className="">
+          <ProjectCard
+            projectTitle={"iOS Social App"}
+            projectSubtitle={"SwiftUI, Swift, KingFisher, Firebase"}
+            projectLink={"www.test"}
+            projectPhotos={"/assets/mobile_app.png"}
+          />
+        </div>
+        <div className="">
+          <ProjectCard
+            projectTitle={"iOS Social App"}
+            projectSubtitle={"SwiftUI, Swift, KingFisher, Firebase"}
+            projectLink={"www.test"}
+            projectPhotos={"/assets/mobile_app2.png"}
+          />
+        </div>
       </div>
+
+      {/* 
+      <div className="my-4">
+            <ProjectCard
+              projectTitle={"iOS Social App"}
+              projectSubtitle={"SwiftUI, Swift, KingFisher, Firebase"}
+              projectLink={"www.test"}
+              projectPhotos={"/assets/mobile_app.png"}
+            />
+          </div>
+      */}
     </main>
   );
 }
