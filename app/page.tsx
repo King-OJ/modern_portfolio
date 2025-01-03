@@ -50,12 +50,12 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="gap-4 grid md:grid-cols-2 ">
-        <div>
+      <div className="layout">
+        <div className="row-span-2">
           <RecentWorks />
         </div>
 
-        <div className="space-y-4 md:col-start-2">
+        <div className="h-full flex flex-col justify-between row-span-1">
           <Card text="Web and Mobile Development" icon={<CodeXml />} />
           <div className="grid grid-flow-col grid-cols-2 gap-4">
             <Card text="UI Design" icon={<Brush />} />
@@ -67,7 +67,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="">
+        <div className="col-start-1 row-span-3">
           <ProjectCard
             projectTitle={"iOS Social App"}
             projectSubtitle={"SwiftUI, Swift, KingFisher, Firebase"}
@@ -75,26 +75,15 @@ export default function Home() {
             projectPhotos={"/assets/mobile_app.png"}
           />
         </div>
-        <div className="">
+        <div className="row-span-2 row-start-2 col-start-2">
           <ProjectCard
             projectTitle={"iOS Social App"}
             projectSubtitle={"SwiftUI, Swift, KingFisher, Firebase"}
             projectLink={"www.test"}
-            projectPhotos={"/assets/mobile_app2.png"}
+            projectPhotos={"/assets/krist-ecommerce.png"}
           />
         </div>
       </div>
-
-      {/* 
-      <div className="my-4">
-            <ProjectCard
-              projectTitle={"iOS Social App"}
-              projectSubtitle={"SwiftUI, Swift, KingFisher, Firebase"}
-              projectLink={"www.test"}
-              projectPhotos={"/assets/mobile_app.png"}
-            />
-          </div>
-      */}
     </main>
   );
 }

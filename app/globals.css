@@ -67,3 +67,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(5, minmax(0, 200px));
+  gap: 20px;
+}

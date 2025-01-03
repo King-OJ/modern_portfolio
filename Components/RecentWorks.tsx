@@ -29,7 +29,7 @@ function RecentWorks() {
   ];
 
   return (
-    <section className="bg-muted px-6 py-10 rounded-xl border">
+    <section className="bg-muted px-6 py-10 rounded-xl border h-full">
       <div className="flex items-center space-x-2">
         <Badge className="p-[2px] bg-accent-foreground" />
         <h3 className="text-accent-foreground font-semibold">Recent Works</h3>

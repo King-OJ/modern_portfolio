@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Clement Ojiguo Portfolio",
+  title: "Clement Ojiguo",
   description: "A web application to showcase Clement Ojiguo portfolio",
 };
 

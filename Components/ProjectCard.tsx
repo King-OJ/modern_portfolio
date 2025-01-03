@@ -16,8 +16,8 @@ function ProjectCard({
   projectTitle,
 }: ProjectCardProps) {
   return (
-    <div className="px-6 py-10 rounded-xl border">
-      <div className="flex items-center justify-between">
+    <div className="px-6 py-10 rounded-xl border flex flex-col h-full items-center">
+      <div className="flex items-center justify-between w-full">
         <div className="space-y-1">
           <h3 className="font-semibold">{projectTitle}</h3>
           <h5 className="text-accent-foreground text-sm">{projectSubtitle}</h5>
@@ -30,15 +30,16 @@ function ProjectCard({
         </Link>
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 flex-1 ">
         <Image
           src={
             typeof projectPhotos == "string" ? projectPhotos : projectPhotos[0]
           }
           alt="chat app"
-          width={180}
-          height={180}
-          className="mx-auto"
+          width={0}
+          height={0}
+          sizes="100vw"
+          className="object-contain w-full h-full"
         />
       </div>
     </div>
