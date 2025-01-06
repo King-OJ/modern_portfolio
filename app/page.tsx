@@ -50,12 +50,12 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="layout">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-[200px_200px_200px_200px_200px] gap-4">
         <div className="row-span-2">
           <RecentWorks />
         </div>
 
-        <div className="h-full flex flex-col justify-between row-span-1">
+        <div className="h-full grid grid-rows-[100px_100px] md:grid-rows-2 gap-4 md:row-span-1">
           <Card text="Web and Mobile Development" icon={<CodeXml />} />
           <div className="grid grid-flow-col grid-cols-2 gap-4">
             <Card text="UI Design" icon={<Brush />} />
@@ -67,7 +67,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="col-start-1 row-span-3">
+        <div className="md:col-start-1 md:row-span-3">
           <ProjectCard
             projectTitle={"iOS Social App"}
             projectSubtitle={"SwiftUI, Swift, KingFisher, Firebase"}
@@ -75,10 +75,10 @@ export default function Home() {
             projectPhotos={"/assets/mobile_app.png"}
           />
         </div>
-        <div className="row-span-2 row-start-2 col-start-2">
+        <div className="md:row-span-2 md:row-start-2 md:col-start-2">
           <ProjectCard
-            projectTitle={"iOS Social App"}
-            projectSubtitle={"SwiftUI, Swift, KingFisher, Firebase"}
+            projectTitle={"Krist Ecommerce"}
+            projectSubtitle={"NextJs, Prisma, Firebase, TailwindCss"}
             projectLink={"www.test"}
             projectPhotos={"/assets/krist-ecommerce.png"}
           />

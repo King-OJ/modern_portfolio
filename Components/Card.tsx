@@ -8,7 +8,7 @@ interface CardProps {
 
 function Card({ text, icon, borderLeft }: CardProps) {
   return (
-    <div className="relative w-full h-24 self-start">
+    <div className="relative w-full h-full self-start">
       <div
         className={`absolute h-full w-full ${
           borderLeft
