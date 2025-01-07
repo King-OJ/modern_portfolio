@@ -36,14 +36,16 @@ function RecentWorks() {
       </div>
 
       <div className="mt-8">
-        <ul className="space-y-6">
+        <ul className="space-y-6 md:space-y-8">
           {works.map((work, index) => {
             return (
               <li key={index} className="flex items-center justify-between">
-                <div className="space-y-1">
+                <div className="space-y-2">
                   <h6
                     className={
-                      index == 0 ? "text-primary font-medium" : "font-medium"
+                      index == 0
+                        ? "text-primary text-sm font-bold sm:text-base sm:font-semibold"
+                        : "text-sm font-bold sm:text-base sm:font-semibold"
                     }
                   >
                     {work.role}

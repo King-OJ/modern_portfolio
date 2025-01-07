@@ -21,19 +21,19 @@ function Navbar() {
           priority
         />
       </div>
-      <nav className="flex-1 h-full mr-6">
-        <Menubar className="h-full rounded-full justify-between bg-muted px-12">
+      <nav className="flex-1 h-full hidden md:block">
+        <Menubar className="h-full rounded-full justify-between bg-muted px-6 md:px-12">
           {links.map((link, index) => {
             return (
               <MenubarMenu key={index}>
-                <MenubarTrigger className="uppercase">{link}</MenubarTrigger>
+                <MenubarTrigger className="uppercase cursor-pointer hover:text-primary transition-all duration-150">
+                  {link}
+                </MenubarTrigger>
               </MenubarMenu>
             );
           })}
         </Menubar>
       </nav>
-
-      <ModeToggle />
     </div>
   );
 }

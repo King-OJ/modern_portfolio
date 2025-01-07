@@ -1,51 +1,61 @@
 import Card from "@/Components/Card";
-import ProjectCard from "@/Components/ProjectCard";
+import MobileProjectCard from "@/Components/MobileProjectCard";
+import { BottomProjectCard, TopProjectCard } from "@/Components/ProjectCard";
 import RecentWorks from "@/Components/RecentWorks";
 import { Badge } from "@/Components/ui/badge";
 import { Button } from "@/Components/ui/button";
 import { Plus, Copy, CodeXml, Brush, MonitorSmartphone } from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="">
+    <main>
       <section className="my-4">
-        <div className="bg-muted px-6 py-10 rounded-xl border">
-          <div className="flex justify-between">
-            <div className="">
-              <h3 className="text-accent-foreground uppercase font-semibold">
-                Software Developer
-              </h3>
-
-              <div className="space-y-4 mt-10">
-                <h2 className="font-bold text-xl">I'm Clement Ojiguo</h2>
-                <p className="text-sm max-w-md text-accent-foreground">
-                  I develop and improve websites and mobile applications to meet
-                  business requirements and satisfy customers.
-                </p>
-                <div className="flex items-center space-x-3">
-                  <Button className="divide-x">
-                    Hire Me <Plus />
-                  </Button>
-                  <Button
-                    size={"sm"}
-                    variant={"ghost"}
-                    className="bg-background"
-                  >
-                    Copy Email <Copy />
-                  </Button>
-                </div>
+        <div className="bg-muted px-6 py-10 rounded-xl border space-y-2">
+          <div className="flex-col-reverse md:flex-row flex md:justify-between">
+            <h3 className="text-accent-foreground uppercase text-sm font-semibold mt-3 md:mt-0">
+              Software Developer
+            </h3>
+            <Badge
+              className="rounded-full bg-background max-w-fit px-4"
+              variant={"secondary"}
+            >
+              <div className="flex items-center space-x-2">
+                <Badge className="p-[2px]" variant={"default"} />
+                <p className="uppercase">Available for job</p>
+              </div>
+            </Badge>
+          </div>
+          <div className="flex flex-col-reverse md:flex-row md:justify-between">
+            <div className="space-y-3 md:space-y-4 mt-4 md:mt-10">
+              <h2 className="font-bold text-xl">I'm Clement Ojiguo</h2>
+              <p className="text-sm max-w-md text-accent-foreground">
+                I develop and improve websites and mobile applications to meet
+                business requirements and satisfy customers.
+              </p>
+              <div className="flex items-center space-x-3">
+                <Button className="divide-x">
+                  Hire Me <Plus />
+                </Button>
+                <Button size={"sm"} variant={"ghost"} className="bg-background">
+                  Copy Email <Copy />
+                </Button>
               </div>
             </div>
-            <div className="self-start">
-              <Badge
-                className="rounded-full bg-background"
-                variant={"secondary"}
-              >
-                <div className="flex items-center space-x-2">
-                  <Badge className="p-[2px]" variant={"default"} />
-                  <p className="uppercase">Available for job</p>
-                </div>
-              </Badge>
+
+            <div className="md:self-end space-y-4">
+              <div className="h-36 w-36 md:h-40 md:w-40 rounded-full relative overflow-hidden bg-neutral-300 border-[10px]">
+                <Image
+                  src={"/assets/profile_pic.png"}
+                  alt="chat app"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition={"center"}
+                  quality={100}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className={"transform scale-x-[-1]"}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -56,31 +66,75 @@ export default function Home() {
         </div>
 
         <div className="h-full grid grid-rows-[100px_100px] md:grid-rows-2 gap-4 md:row-span-1">
-          <Card text="Web and Mobile Development" icon={<CodeXml />} />
+          <Card
+            content={
+              <div className="px-2 text-center flex flex-col items-center space-y-2">
+                <span>
+                  <CodeXml />
+                </span>
+                <p className="text-sm font-medium sm:text-base">
+                  Web & Mobile Development
+                </p>
+              </div>
+            }
+          />
           <div className="grid grid-flow-col grid-cols-2 gap-4">
-            <Card text="UI Design" icon={<Brush />} />
             <Card
-              text="UX Implementation"
-              icon={<MonitorSmartphone />}
+              content={
+                <div className="px-2 text-center flex flex-col items-center space-y-2">
+                  <span>
+                    <Brush />
+                  </span>
+                  <p className="text-sm font-medium sm:text-base">
+                    Turn UI design to code
+                  </p>
+                </div>
+              }
+            />
+            <Card
+              content={
+                <div className="px-2 text-center flex flex-col items-center space-y-2">
+                  <span>
+                    <MonitorSmartphone />
+                  </span>
+                  <p className="text-sm font-medium sm:text-base">
+                    Best UX concepts
+                  </p>
+                </div>
+              }
               borderLeft
             />
           </div>
         </div>
 
         <div className="md:col-start-1 md:row-span-3">
-          <ProjectCard
-            projectTitle={"iOS Social App"}
-            projectSubtitle={"SwiftUI, Swift, KingFisher, Firebase"}
+          <MobileProjectCard
+            projectTitle={"Media X"}
+            projectSubtitle={"SwiftUI, Firebase, KingFisher"}
             projectLink={"www.test"}
-            projectPhotos={"/assets/mobile_app.png"}
+            projectPhotoUrl={"/assets/krist-ecommerce.png"}
           />
         </div>
         <div className="md:row-span-2 md:row-start-2 md:col-start-2">
-          <ProjectCard
+          <TopProjectCard
+            projectTitle={"Responsive UI design"}
+            projectSubtitle={"HTML, CSS"}
+            projectLink={"https://singlepageapp-beryl.vercel.app/"}
+            projectPhotosUrl={[
+              "/assets/showcase_1.png",
+              "/assets/showcase.png",
+            ]}
+          />
+        </div>
+        <div className="md:row-span-2 md:col-start-2">
+          <BottomProjectCard
             projectTitle={"Krist Ecommerce"}
             projectSubtitle={"NextJs, Prisma, Firebase, TailwindCss"}
             projectLink={"www.test"}
-            projectPhotos={"/assets/krist-ecommerce.png"}
+            projectPhotosUrl={[
+              "/assets/krist-ecommerce.png",
+              "/assets/krist-ecommerce2.png",
+            ]}
           />
         </div>
       </div>
