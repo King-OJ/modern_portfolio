@@ -17,18 +17,15 @@ export function TopProjectCard({
   projectTitle,
 }: ProjectCardProps) {
   return (
-    <div className="px-6 py-8 rounded-xl border flex flex-col h-[400px] md:h-full items-center bg-muted">
+    <div className="px-6 py-8 rounded-xl border flex flex-col h-full items-center bg-muted">
       <div className="flex items-center justify-between w-full">
         <div className="space-y-1">
           <h3 className="font-semibold">{projectTitle}</h3>
           <h5 className="text-accent-foreground text-sm">{projectSubtitle}</h5>
         </div>
-        <Link
-          href={projectLink}
-          className="p-1 rounded-full h-6 w-6 md:h-8 md:w-8 bg-primary grid place-content-center"
-        >
+        <button className="p-1 rounded-full h-8 w-8 bg-primary grid place-content-center">
           <ArrowUpRight />
-        </Link>
+        </button>
       </div>
 
       <div className="mt-4 flex-1 w-full flex justify-center items-center relative">
@@ -57,18 +54,15 @@ export function BottomProjectCard({
   projectTitle,
 }: ProjectCardProps) {
   return (
-    <div className="px-6 py-8 rounded-xl border flex flex-col h-[400px] md:h-full items-center bg-muted">
+    <div className="px-6 py-8 rounded-xl border flex flex-col h-full items-center bg-muted">
       <div className="flex items-center justify-between w-full">
         <div className="space-y-1">
           <h3 className="font-semibold">{projectTitle}</h3>
           <h5 className="text-accent-foreground text-sm">{projectSubtitle}</h5>
         </div>
-        <Link
-          href={projectLink}
-          className="p-1 rounded-full h-6 w-6 md:h-8 md:w-8 bg-primary grid place-content-center"
-        >
+        <button className="p-1 rounded-full h-8 w-8 bg-primary grid place-content-center ">
           <ArrowUpRight />
-        </Link>
+        </button>
       </div>
 
       <div className="mt-4 flex-1 w-full flex justify-center items-center relative">

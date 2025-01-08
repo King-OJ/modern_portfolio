@@ -16,18 +16,15 @@ function MobileProjectCard({
   projectPhotoUrl,
 }: MobileProjectCardProps) {
   return (
-    <div className="px-6 pt-8 rounded-xl border flex flex-col h-[600px] md:h-full items-center bg-muted">
+    <div className="px-6 pt-8 rounded-xl border flex flex-col h-full items-center bg-muted">
       <div className="flex items-center justify-between w-full">
         <div className="space-y-1">
           <h3 className="font-semibold">{projectTitle}</h3>
           <h5 className="text-accent-foreground text-sm">{projectSubtitle}</h5>
         </div>
-        <Link
-          href={projectLink}
-          className="p-1 rounded-full h-6 w-6 md:h-8 md:w-8 bg-primary grid place-content-center"
-        >
+        <button className="p-1 rounded-full h-8 w-8 grid place-content-center bg-primary">
           <ArrowUpRight />
-        </Link>
+        </button>
       </div>
 
       <div className="mt-10 flex-1 w-full flex justify-center items-center relative">

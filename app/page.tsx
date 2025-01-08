@@ -1,10 +1,18 @@
 import Card from "@/Components/Card";
+import FlipCard from "@/Components/FlipCard";
 import MobileProjectCard from "@/Components/MobileProjectCard";
 import { BottomProjectCard, TopProjectCard } from "@/Components/ProjectCard";
 import RecentWorks from "@/Components/RecentWorks";
 import { Badge } from "@/Components/ui/badge";
 import { Button } from "@/Components/ui/button";
-import { Plus, Copy, CodeXml, Brush, MonitorSmartphone } from "lucide-react";
+import {
+  Plus,
+  Copy,
+  CodeXml,
+  Brush,
+  MonitorSmartphone,
+  Redo,
+} from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
@@ -107,7 +115,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="md:col-start-1 md:row-span-3">
+        <div className="md:col-start-1 md:row-span-3 h-[600px] md:h-full">
           <MobileProjectCard
             projectTitle={"Media X"}
             projectSubtitle={"SwiftUI, Firebase, KingFisher"}
@@ -115,26 +123,88 @@ export default function Home() {
             projectPhotoUrl={"/assets/krist-ecommerce.png"}
           />
         </div>
-        <div className="md:row-span-2 md:row-start-2 md:col-start-2">
-          <TopProjectCard
-            projectTitle={"Responsive UI design"}
-            projectSubtitle={"HTML, CSS"}
-            projectLink={"https://singlepageapp-beryl.vercel.app/"}
-            projectPhotosUrl={[
-              "/assets/showcase_1.png",
-              "/assets/showcase.png",
-            ]}
+        <div className="md:row-span-2 md:row-start-2 md:col-start-2 md:h-full h-[400px]">
+          <FlipCard
+            front={
+              <TopProjectCard
+                projectTitle={"Responsive UI design"}
+                projectSubtitle={"HTML, CSS"}
+                projectLink={"https://singlepageapp-beryl.vercel.app/"}
+                projectPhotosUrl={[
+                  "/assets/showcase_1.png",
+                  "/assets/showcase.png",
+                ]}
+              />
+            }
+            back={
+              <div className="px-6 py-8 rounded-xl border flex h-[400px] md:h-full flex-col items-center bg-muted">
+                <div className="flex items-center justify-between w-full mb-8">
+                  <h3 className="font-semibold md:text-lg">About Project</h3>
+
+                  <button className="p-1 rounded-full h-8 w-8 bg-primary hover:bg-primary/90 transition-all duration-150 grid place-content-center">
+                    <Redo />
+                  </button>
+                </div>
+                <div className="flex-1 flex flex-col justify-between">
+                  <p className="text-sm md:text-base text-left">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Facere tenetur consequatur quidem itaque reprehenderit,
+                    commodi, aliquam adipisci quas enim dolore expedita tempora
+                    nobis qui nam quis impedit delectus, consectetur amet!
+                  </p>
+                  <div className="flex items-center space-x-4">
+                    <button className="bg-primary py-2 px-4 rounded-md h-9 flex items-center text-sm font-bold">
+                      Visit Site
+                    </button>
+                    <button className="bg-background py-2 px-4 rounded-md h-9 flex items-center text-sm font-bold">
+                      View Code
+                    </button>
+                  </div>
+                </div>
+              </div>
+            }
           />
         </div>
-        <div className="md:row-span-2 md:col-start-2">
-          <BottomProjectCard
-            projectTitle={"Krist Ecommerce"}
-            projectSubtitle={"NextJs, Prisma, Firebase, TailwindCss"}
-            projectLink={"www.test"}
-            projectPhotosUrl={[
-              "/assets/krist-ecommerce.png",
-              "/assets/krist-ecommerce2.png",
-            ]}
+        <div className="md:row-span-2 md:col-start-2 md:h-full h-[400px]">
+          <FlipCard
+            front={
+              <BottomProjectCard
+                projectTitle={"Krist Ecommerce"}
+                projectSubtitle={"NextJs, Prisma, Firebase, TailwindCss"}
+                projectLink={"www.test"}
+                projectPhotosUrl={[
+                  "/assets/krist-ecommerce.png",
+                  "/assets/krist-ecommerce2.png",
+                ]}
+              />
+            }
+            back={
+              <div className="px-6 py-8 rounded-xl border flex h-[400px] md:h-full flex-col items-center bg-muted">
+                <div className="flex items-center justify-between w-full mb-8">
+                  <h3 className="font-semibold md:text-lg">About Project</h3>
+
+                  <button className="p-1 rounded-full h-8 w-8 bg-primary hover:bg-primary/90 transition-all duration-150 grid place-content-center">
+                    <Redo />
+                  </button>
+                </div>
+                <div className="flex-1 flex flex-col justify-between">
+                  <p className="text-sm md:text-base text-left">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Facere tenetur consequatur quidem itaque reprehenderit,
+                    commodi, aliquam adipisci quas enim dolore expedita tempora
+                    nobis qui nam quis impedit delectus, consectetur amet!
+                  </p>
+                  <div className="flex items-center space-x-4">
+                    <button className="bg-primary py-2 px-4 rounded-md h-9 flex items-center text-sm font-bold">
+                      Visit Site
+                    </button>
+                    <button className="bg-background py-2 px-4 rounded-md h-9 flex items-center text-sm font-bold">
+                      View Code
+                    </button>
+                  </div>
+                </div>
+              </div>
+            }
           />
         </div>
       </div>
