@@ -38,17 +38,20 @@ function Navbar() {
             : "-translate-y-full mt-0"
         } md:flex md:items-center h-12 transition-all duration-300 ease-in-out transform`}
       >
-        <div className="rounded-full border-2 p-1 h-full hidden md:block">
-          <Image
-            className="w-auto h-full"
-            src={"/lightmode_logo.png"}
-            alt="Clement Ojiguo logo"
-            width={0}
-            height={0}
-            sizes="100vw"
-            priority
-          />
-        </div>
+        <Link href={"/"} className="hidden md:block h-full">
+          <div className="rounded-full border-2 p-1 h-full">
+            <Image
+              className="w-auto h-full"
+              src={"/lightmode_logo.png"}
+              alt="Clement Ojiguo logo"
+              width={0}
+              height={0}
+              sizes="100vw"
+              priority
+            />
+          </div>
+        </Link>
+
         <div className="flex-1 h-full">
           <ul className="h-full rounded-full items-center border bg-muted px-6 md:px-12 flex justify-between">
             {links.map((link, index) => {
@@ -56,7 +59,7 @@ function Navbar() {
                 <li key={index}>
                   <Link
                     href={`/${link}`}
-                    className="uppercase cursor-pointer hover:text-primary transition-all duration-150 text-sm md:text-base md:font-medium font-semibold"
+                    className="uppercase cursor-pointer p-2 hover:text-primary transition-all duration-150 text-sm md:text-base md:font-medium font-semibold"
                   >
                     {link}
                   </Link>
