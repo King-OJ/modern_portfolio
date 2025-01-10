@@ -13,12 +13,25 @@ function RoundedCornerImg({
     <Image
       src={src}
       alt="project photo"
-      layout="fill"
-      objectFit="cover"
-      objectPosition={position}
-      quality={90}
+      fill
+      quality={100}
       sizes="(max-width: 768px) 100vw, 50vw"
-      className={border ? "rounded-2xl" : ""}
+      className={
+        border
+          ? `rounded-2xl object-cover 
+          ${position && position == "right" && "object-right"}
+          ${position && position == "left" && "object-left"}
+          ${position && position == "top" && "object-top"}
+          ${position && position == "center" && "object-center"}
+          
+          `
+          : `object-cover 
+           ${position && position == "right" && "object-right"}
+          ${position && position == "left" && "object-left"}
+          ${position && position == "top" && "object-top"}
+          ${position && position == "center" && "object-center"}
+          `
+      }
     />
   );
 }

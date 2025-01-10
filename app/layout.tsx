@@ -39,7 +39,7 @@ export default function RootLayout({
         >
           <div className="px-6 py-8 md:px-12 lg:px-16 md:py-10 max-w-7xl mx-auto">
             <Navbar />
-            {children}
+            <div className="min-h-[80vh]">{children}</div>
             <Footer />
           </div>
         </ThemeProvider>

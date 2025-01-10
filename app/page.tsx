@@ -1,7 +1,9 @@
 import Card from "@/Components/Card";
 import FlipCard from "@/Components/FlipCard";
 import MobileProjectCard from "@/Components/MobileProjectCard";
+import ProfilePhoto from "@/Components/ProfilePhoto";
 import { BottomProjectCard, TopProjectCard } from "@/Components/ProjectCard";
+import ProjectInfo from "@/Components/ProjectInfo";
 import RecentWorks from "@/Components/RecentWorks";
 import { Badge } from "@/Components/ui/badge";
 import { Button } from "@/Components/ui/button";
@@ -13,11 +15,10 @@ import {
   MonitorSmartphone,
   Redo,
 } from "lucide-react";
-import Image from "next/image";
 
 export default function Home() {
   return (
-    <main>
+    <main className="mt-10 md:mt-12">
       <section className="my-4">
         <div className="bg-muted px-6 py-10 rounded-xl border space-y-2">
           <div className="flex-col-reverse md:flex-row flex md:justify-between">
@@ -35,13 +36,13 @@ export default function Home() {
             </Badge>
           </div>
           <div className="flex flex-col-reverse md:flex-row md:justify-between">
-            <div className="space-y-3 md:space-y-4 mt-4 md:mt-10">
-              <h2 className="font-bold text-xl">I'm Clement Ojiguo</h2>
+            <div className="mt-4 md:mt-10">
+              <h2 className="font-bold text-xl mb-2">I'm Clement Ojiguo</h2>
               <p className="text-sm max-w-md text-accent-foreground">
                 I develop and improve websites and mobile applications to meet
                 business requirements and satisfy customers.
               </p>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-3 mt-4">
                 <Button className="divide-x">
                   Hire Me <Plus />
                 </Button>
@@ -52,18 +53,7 @@ export default function Home() {
             </div>
 
             <div className="md:self-end space-y-4">
-              <div className="h-36 w-36 md:h-40 md:w-40 rounded-full relative overflow-hidden bg-neutral-300 border-[10px]">
-                <Image
-                  src={"/assets/profile_pic.png"}
-                  alt="chat app"
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition={"center"}
-                  quality={100}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className={"transform scale-x-[-1]"}
-                />
-              </div>
+              <ProfilePhoto />
             </div>
           </div>
         </div>
@@ -129,7 +119,6 @@ export default function Home() {
               <TopProjectCard
                 projectTitle={"Responsive UI design"}
                 projectSubtitle={"HTML, CSS"}
-                projectLink={"https://singlepageapp-beryl.vercel.app/"}
                 projectPhotosUrl={[
                   "/assets/showcase_1.png",
                   "/assets/showcase.png",
@@ -137,31 +126,13 @@ export default function Home() {
               />
             }
             back={
-              <div className="px-6 py-8 rounded-xl border flex h-[400px] md:h-full flex-col items-center bg-muted">
-                <div className="flex items-center justify-between w-full mb-8">
-                  <h3 className="font-semibold md:text-lg">About Project</h3>
-
-                  <button className="p-1 rounded-full h-8 w-8 bg-primary hover:bg-primary/90 transition-all duration-150 grid place-content-center">
-                    <Redo />
-                  </button>
-                </div>
-                <div className="flex-1 flex flex-col justify-between">
-                  <p className="text-sm md:text-base text-left">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Facere tenetur consequatur quidem itaque reprehenderit,
-                    commodi, aliquam adipisci quas enim dolore expedita tempora
-                    nobis qui nam quis impedit delectus, consectetur amet!
-                  </p>
-                  <div className="flex items-center space-x-4">
-                    <button className="bg-primary py-2 px-4 rounded-md h-9 flex items-center text-sm font-bold">
-                      Visit Site
-                    </button>
-                    <button className="bg-background py-2 px-4 rounded-md h-9 flex items-center text-sm font-bold">
-                      View Code
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <ProjectInfo
+                about={
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere tenetur consequatur quidem itaque reprehenderit, commodi, aliquam adipisci quas enim dolore expedita tempora nobis qui nam quis impedit delectus consectetur amet"
+                }
+                githubLink={"#"}
+                siteLink={"#"}
+              />
             }
           />
         </div>
@@ -171,7 +142,6 @@ export default function Home() {
               <BottomProjectCard
                 projectTitle={"Krist Ecommerce"}
                 projectSubtitle={"NextJs, Prisma, Firebase, TailwindCss"}
-                projectLink={"www.test"}
                 projectPhotosUrl={[
                   "/assets/krist-ecommerce.png",
                   "/assets/krist-ecommerce2.png",
@@ -179,31 +149,13 @@ export default function Home() {
               />
             }
             back={
-              <div className="px-6 py-8 rounded-xl border flex h-[400px] md:h-full flex-col items-center bg-muted">
-                <div className="flex items-center justify-between w-full mb-8">
-                  <h3 className="font-semibold md:text-lg">About Project</h3>
-
-                  <button className="p-1 rounded-full h-8 w-8 bg-primary hover:bg-primary/90 transition-all duration-150 grid place-content-center">
-                    <Redo />
-                  </button>
-                </div>
-                <div className="flex-1 flex flex-col justify-between">
-                  <p className="text-sm md:text-base text-left">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Facere tenetur consequatur quidem itaque reprehenderit,
-                    commodi, aliquam adipisci quas enim dolore expedita tempora
-                    nobis qui nam quis impedit delectus, consectetur amet!
-                  </p>
-                  <div className="flex items-center space-x-4">
-                    <button className="bg-primary py-2 px-4 rounded-md h-9 flex items-center text-sm font-bold">
-                      Visit Site
-                    </button>
-                    <button className="bg-background py-2 px-4 rounded-md h-9 flex items-center text-sm font-bold">
-                      View Code
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <ProjectInfo
+                about={
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere tenetur consequatur quidem itaque reprehenderit, commodi, aliquam adipisci quas enim dolore expedita tempora nobis qui nam quis impedit delectus consectetur amet"
+                }
+                githubLink={"#"}
+                siteLink={"#"}
+              />
             }
           />
         </div>

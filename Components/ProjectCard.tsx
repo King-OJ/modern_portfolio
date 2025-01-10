@@ -1,21 +1,22 @@
+"use client";
 import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 import RoundedCornerImg from "./RoundedCornerImg";
+import { useContext } from "react";
+import { FlipCardContext } from "./FlipCard";
 
 interface ProjectCardProps {
   projectTitle: string;
   projectSubtitle: string;
-  projectLink: string;
   projectPhotosUrl: string[] | string;
 }
 
 export function TopProjectCard({
-  projectLink,
   projectPhotosUrl,
   projectSubtitle,
   projectTitle,
 }: ProjectCardProps) {
+  const { flipCard } = useContext(FlipCardContext);
+
   return (
     <div className="px-6 py-8 rounded-xl border flex flex-col h-full items-center bg-muted">
       <div className="flex items-center justify-between w-full">
@@ -23,7 +24,10 @@ export function TopProjectCard({
           <h3 className="font-semibold">{projectTitle}</h3>
           <h5 className="text-accent-foreground text-sm">{projectSubtitle}</h5>
         </div>
-        <button className="p-1 rounded-full h-8 w-8 bg-primary grid place-content-center">
+        <button
+          onClick={() => flipCard()}
+          className="p-1 rounded-full h-8 w-8 bg-primary grid place-content-center"
+        >
           <ArrowUpRight />
         </button>
       </div>
@@ -48,11 +52,12 @@ export function TopProjectCard({
 }
 
 export function BottomProjectCard({
-  projectLink,
   projectPhotosUrl,
   projectSubtitle,
   projectTitle,
 }: ProjectCardProps) {
+  const { flipCard } = useContext(FlipCardContext);
+
   return (
     <div className="px-6 py-8 rounded-xl border flex flex-col h-full items-center bg-muted">
       <div className="flex items-center justify-between w-full">
@@ -60,7 +65,10 @@ export function BottomProjectCard({
           <h3 className="font-semibold">{projectTitle}</h3>
           <h5 className="text-accent-foreground text-sm">{projectSubtitle}</h5>
         </div>
-        <button className="p-1 rounded-full h-8 w-8 bg-primary grid place-content-center ">
+        <button
+          onClick={() => flipCard()}
+          className="p-1 rounded-full h-8 w-8 bg-primary grid place-content-center "
+        >
           <ArrowUpRight />
         </button>
       </div>
