@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ThemeProvider } from "@/Components/ThemeProvider";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 
@@ -31,18 +30,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="px-6 py-8 md:px-12 lg:px-16 md:py-10 max-w-7xl mx-auto">
-            <Navbar />
-            <div className="min-h-[80vh]">{children}</div>
-            <Footer />
-          </div>
-        </ThemeProvider>
+        <div className="px-6 py-8 md:px-12 lg:px-16 md:py-10 max-w-7xl mx-auto">
+          <Navbar />
+          <div className="min-h-[80vh]">{children}</div>
+          <Footer />
+        </div>
       </body>
     </html>
   );
