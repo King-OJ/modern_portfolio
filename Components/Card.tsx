@@ -15,13 +15,13 @@ function Card({ borderLeft, content, reducedGradient }: CardProps) {
             ? "bg-gradient-to-bl -ml-[2px]"
             : "bg-gradient-to-tr ml-[2px] -rotate-[0.2deg]"
         } ${
-          reducedGradient ? "from-70%" : "from-50%"
+          reducedGradient ? "from-80%" : "from-50%"
         }  from-transparent to-primary rounded-xl`}
       ></div>
       <div
         className={`absolute h-full w-full ${
           borderLeft ? "-mt-[1px]" : "mt-[1px]"
-        } border space-y-1 flex flex-col justify-center items-center bg-muted/70 rounded-xl`}
+        } border space-y-1 flex flex-col justify-center items-center bg-muted/90 rounded-xl`}
       >
         {content}
       </div>

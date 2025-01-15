@@ -51,6 +51,10 @@ export default {
           "5": "hsl(var(--chart-5))",
         },
       },
+      fontFamily: {
+        nunito: ["var(--font-nunito)", "san-serif"],
+        kodchasan: ["var(--font-kodchasan)", "san-serif"],
+      },
       // borderRadius: {
       //   lg: "var(--radius)",
       //   md: "calc(var(--radius) - 2px)",

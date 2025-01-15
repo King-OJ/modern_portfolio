@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
+import { Kodchasan } from "next/font/google";
+import { Nunito } from "next/font/google";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const kodchasan = Kodchasan({
+  weight: ["200", "300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-kodchasan",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const nunito = Nunito({
+  weight: ["200", "300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-nunito",
 });
 
 export const metadata: Metadata = {
@@ -27,9 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${kodchasan.variable} ${nunito.variable}`}>
         <div className="px-6 py-8 md:px-12 lg:px-16 md:py-10 max-w-7xl mx-auto">
           <Navbar />
           <div className="min-h-[80vh]">{children}</div>

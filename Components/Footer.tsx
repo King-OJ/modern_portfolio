@@ -44,12 +44,14 @@ function Footer() {
                 >
                   <div className="flex items-center space-x-2">
                     <Badge className="p-[2px]" variant={"default"} />
-                    <p className="uppercase">Available for job</p>
+                    <p className="uppercase text-[10px] md:text-xs">
+                      Available for job
+                    </p>
                   </div>
                 </Badge>
               </div>
 
-              <ul className="space-x-4 flex text-sm font-semibold md:hidden">
+              <ul className="space-x-4 flex text-xs md:text-sm font-semibold md:hidden">
                 {socialLinks.map((link, index) => {
                   return (
                     <li

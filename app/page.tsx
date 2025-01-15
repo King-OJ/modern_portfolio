@@ -7,14 +7,7 @@ import ProjectInfo from "@/Components/ProjectInfo";
 import RecentWorks from "@/Components/RecentWorks";
 import { Badge } from "@/Components/ui/badge";
 import { Button } from "@/Components/ui/button";
-import {
-  Plus,
-  Copy,
-  CodeXml,
-  Brush,
-  MonitorSmartphone,
-  Redo,
-} from "lucide-react";
+import { Plus, Copy, CodeXml, Brush, MonitorSmartphone } from "lucide-react";
 
 export default function Home() {
   return (
@@ -38,7 +31,7 @@ export default function Home() {
           <div className="flex flex-col-reverse md:flex-row md:justify-between">
             <div className="mt-4 md:mt-10">
               <h2 className="font-bold text-xl mb-2">I'm Clement Ojiguo</h2>
-              <p className="text-sm max-w-md text-accent-foreground">
+              <p className="text-sm md:text-base max-w-md text-accent-foreground">
                 I develop and improve websites and mobile applications to meet
                 business requirements and satisfy customers.
               </p>

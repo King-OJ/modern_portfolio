@@ -53,7 +53,7 @@ function Navbar() {
         </Link>
 
         <div className="flex-1 h-full">
-          <ul className="h-full rounded-full items-center border bg-muted px-6 md:px-12 flex justify-between">
+          <ul className="h-full rounded-full items-center font-kodchasan border bg-muted px-6 md:px-12 flex justify-between">
             {links.map((link, index) => {
               return (
                 <li key={index}>
