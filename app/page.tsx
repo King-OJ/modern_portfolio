@@ -31,7 +31,9 @@ export default function Home() {
           </div>
           <div className="flex flex-col-reverse md:flex-row md:justify-between">
             <div className="mt-4 md:mt-10">
-              <h2 className="font-bold text-xl mb-2">I'm Clement Ojiguo</h2>
+              <h2 className="font-bold text-xl mb-2">
+                I&apos;m Clement Ojiguo
+              </h2>
               <p className="text-sm md:text-base max-w-md text-accent-foreground">
                 I develop and improve websites and mobile applications to meet
                 business requirements and satisfy customers.
