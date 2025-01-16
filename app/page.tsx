@@ -8,6 +8,7 @@ import RecentWorks from "@/Components/RecentWorks";
 import { Badge } from "@/Components/ui/badge";
 import { Button } from "@/Components/ui/button";
 import { Plus, Copy, CodeXml, Brush, MonitorSmartphone } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -36,9 +37,15 @@ export default function Home() {
                 business requirements and satisfy customers.
               </p>
               <div className="flex items-center space-x-3 mt-4">
-                <Button className="divide-x">
-                  Hire Me <Plus />
-                </Button>
+                <Link
+                  href={"/contact"}
+                  className=" btn flex items-center bg-primary"
+                >
+                  <span className="h-full flex items-center pr-2">Hire Me</span>
+                  <span className="border-l-2 h-full flex items-center pl-2">
+                    <Plus size={19} />
+                  </span>
+                </Link>
                 <Button size={"sm"} variant={"ghost"} className="bg-background">
                   Copy Email <Copy />
                 </Button>
@@ -110,12 +117,9 @@ export default function Home() {
           <FlipCard
             front={
               <TopProjectCard
-                projectTitle={"Responsive UI design"}
-                projectSubtitle={"HTML, CSS"}
-                projectPhotosUrl={[
-                  "/assets/showcase_1.png",
-                  "/assets/showcase.png",
-                ]}
+                title={"Responsive UI design"}
+                subtitle={"HTML, CSS"}
+                photosUrl={["/assets/showcase_1.png", "/assets/showcase.png"]}
               />
             }
             back={
@@ -133,9 +137,9 @@ export default function Home() {
           <FlipCard
             front={
               <BottomProjectCard
-                projectTitle={"Krist Ecommerce"}
-                projectSubtitle={"NextJs, Prisma, Firebase, TailwindCss"}
-                projectPhotosUrl={[
+                title={"Krist Ecommerce"}
+                subtitle={"NextJs, Prisma, Firebase, TailwindCss"}
+                photosUrl={[
                   "/assets/krist-ecommerce.png",
                   "/assets/krist-ecommerce2.png",
                 ]}

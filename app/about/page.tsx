@@ -9,11 +9,12 @@ import {
   MonitorSmartphone,
   Plus,
 } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 function AboutPage() {
   return (
-    <main className="mt-10 md:mt-12 ">
+    <main className="mt-10 md:mt-12">
       <div className="flex flex-col justify-center min-h-[80vh] text-center md:text-left">
         <h2 className="text-2xl font-extrabold my-4 md:my-8 ">About Me</h2>
         <div className="flex flex-col-reverse items-center md:flex-row md:items-center gap-4 md:gap-8 mb-10">
@@ -93,9 +94,12 @@ function AboutPage() {
           </li>
         </ul>
         <div className="flex items-center justify-center space-x-3 my-8">
-          <button className="bg-primary flex items-center">
-            Hire Me <Plus />
-          </button>
+          <Link href={"/contact"} className=" btn flex items-center bg-primary">
+            <span className="h-full flex items-center pr-2">Hire Me</span>
+            <span className="border-l-2 h-full flex items-center pl-2">
+              <Plus size={19} />
+            </span>
+          </Link>
           <Button size={"sm"} variant={"ghost"} className="bg-background">
             Copy Email <Copy />
           </Button>

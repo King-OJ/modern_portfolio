@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 function Navbar() {
-  const links: Array<string> = ["about", "portfolio", "contact"];
+  const links: Array<string> = ["home", "about", "portfolio", "contact"];
   const [lastScrollY, setLastScrollY] = useState<Number>(0);
   const [isNavbarVisible, setIsNavbarVisible] = useState<boolean>(true);
 
@@ -58,7 +58,7 @@ function Navbar() {
               return (
                 <li key={index}>
                   <Link
-                    href={`/${link}`}
+                    href={`/${index == 0 ? "/" : link}`}
                     className="uppercase cursor-pointer p-2 hover:text-primary transition-all duration-150 text-sm md:text-base md:font-medium font-semibold"
                   >
                     {link}

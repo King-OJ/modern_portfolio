@@ -1,4 +1,7 @@
+"use client";
 import Image from "next/image";
+import { useState } from "react";
+import ImageLoadingSkeleton from "./ImageLoadingSkeleton";
 
 function RoundedCornerImg({
   src,
@@ -9,30 +12,36 @@ function RoundedCornerImg({
   position?: string;
   border?: boolean;
 }) {
+  const [isImageReady, setIsImageReady] = useState(false);
+
   return (
-    <Image
-      src={src}
-      alt="project photo"
-      fill
-      quality={100}
-      sizes="(max-width: 768px) 100vw, 50vw"
-      className={
-        border
-          ? `rounded-2xl object-cover 
+    <>
+      {!isImageReady && <ImageLoadingSkeleton />}
+      <Image
+        onLoad={() => setIsImageReady(true)}
+        src={src}
+        alt="project photo"
+        fill
+        quality={100}
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className={
+          border
+            ? `object-cover 
           ${position && position == "right" && "object-right"}
           ${position && position == "left" && "object-left"}
           ${position && position == "top" && "object-top"}
           ${position && position == "center" && "object-center"}
           
           `
-          : `object-cover 
+            : `object-cover 
            ${position && position == "right" && "object-right"}
           ${position && position == "left" && "object-left"}
           ${position && position == "top" && "object-top"}
           ${position && position == "center" && "object-center"}
           `
-      }
-    />
+        }
+      />
+    </>
   );
 }
 

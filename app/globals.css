@@ -53,8 +53,9 @@
     @apply hover:bg-opacity-90 transition-all duration-150;
   }
 
-  button {
-    @apply h-9 px-4 py-2 rounded-md;
+  button,
+  .btn {
+    @apply h-8 px-3 text-sm rounded-md;
   }
   .about_box {
     @apply space-y-4 md:space-y-0 p-2 md:py-6 md:h-[290px] flex flex-col items-center md:items-start sm:justify-between;

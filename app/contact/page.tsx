@@ -6,8 +6,8 @@ import FloatingLabel from "@/Components/FloatingLabel";
 
 function ContactPage() {
   return (
-    <main className="mt-10 md:mt-12">
-      <div className="space-y-6 md:hidden mb-8 md:mb-0">
+    <main className="mt-10 md:mt-12 flex flex-col-reverse md:block">
+      <div className="space-y-6 md:hidden mt-8 md:mt-0">
         <h6 className="text-lg md:text-2xl font-bold flex items-center">
           Get in touch with me!{" "}
           <span className="ml-2 ">
@@ -38,7 +38,8 @@ function ContactPage() {
           </li>
         </ul>
       </div>
-      <div className="w-full h-[80vh] flex items-center">
+      <div className="w-full h-[80vh] flex flex-col justify-center">
+        <h2 className="text-2xl font-extrabold my-4 md:my-8 ">Contact Me</h2>
         <div className="h-[500px] lg:h-[600px] w-full">
           <div className="relative w-full h-full">
             <div
@@ -110,7 +111,7 @@ function ContactPage() {
                       <textarea
                         name="message"
                         id="message"
-                        className="outline-none text-foreground border-2 p-2 min-h-32 border-accent-foreground rounded-xl bg-transparent w-full"
+                        className="outline-none text-foreground border-2 p-2 h-24 md:h-32 border-accent-foreground rounded-xl bg-transparent w-full"
                       ></textarea>
                     </div>
                     <button

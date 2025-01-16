@@ -28,7 +28,7 @@ function MobileProjectCard({
       </div>
 
       <div className="mt-10 flex-1 w-full flex justify-center items-center relative">
-        <div className="w-72 h-full shadow-md relative">
+        <div className="w-72 h-full shadow-md relative rounded-tl-2xl rounded-tr-2xl overflow-hidden">
           <RoundedCornerImg src="/assets/mobile-app-pic.png" position="top" />
         </div>
       </div>
