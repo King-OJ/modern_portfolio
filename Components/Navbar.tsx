@@ -11,20 +11,13 @@ function Navbar() {
   const [isImageReady, setIsImageReady] = useState(false);
 
   const handleScroll = () => {
-    // if (window.scrollY == 0 || window.scrollY < Number(lastScrollY)) {
-    //   setIsNavbarVisible(true);
-    // } else {
-    //   setIsNavbarVisible(false);
-    // }
     if (typeof window !== "undefined") {
-      {
+      if (window.scrollY < 200) {
+        setIsNavbarVisible(true);
+      } else {
         if (window.scrollY > Number(lastScrollY)) {
-          if (window.scrollY == 0) {
-            setIsNavbarVisible(true);
-          } else {
-            // User is scrolling down
-            setIsNavbarVisible(false);
-          }
+          // User is scrolling down
+          setIsNavbarVisible(false);
         } else {
           // User is scrolling up
           setIsNavbarVisible(true);
