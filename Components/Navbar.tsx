@@ -32,7 +32,7 @@ function Navbar() {
   }, [lastScrollY]);
 
   return (
-    <nav className="fixed z-50 left-0 right-0 top-0 px-6 md:px-12 lg:px-16 max-w-7xl mx-auto">
+    <nav className="fixed z-50 left-0 right-0 top-0 px-2 sm:px-6 md:px-12 lg:px-16 max-w-7xl mx-auto">
       <div
         className={`${
           isNavbarVisible
