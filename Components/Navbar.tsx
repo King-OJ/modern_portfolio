@@ -17,12 +17,14 @@ function Navbar() {
     //   setIsNavbarVisible(false);
     // }
     if (typeof window !== "undefined") {
-      if (window.scrollY == 0) {
-        setIsNavbarVisible(true);
-      } else {
+      {
         if (window.scrollY > Number(lastScrollY)) {
-          // User is scrolling down
-          setIsNavbarVisible(false);
+          if (window.scrollY == 0) {
+            setIsNavbarVisible(true);
+          } else {
+            // User is scrolling down
+            setIsNavbarVisible(false);
+          }
         } else {
           // User is scrolling up
           setIsNavbarVisible(true);
