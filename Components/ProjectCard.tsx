@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import RoundedCornerImg from "./RoundedCornerImg";
 import { useContext } from "react";
 import { FlipCardContext } from "./FlipCard";
-import { ProjectDetails } from "@/app/portfolio/page";
+import { ProjectDetails } from "@/utils/types";
 
 export function TopProjectCard({ photosUrl, subtitle, title }: ProjectDetails) {
   const { flipCard } = useContext(FlipCardContext);

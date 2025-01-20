@@ -2,11 +2,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ImageLoadingSkeleton from "./ImageLoadingSkeleton";
 
 function Navbar() {
   const links: Array<string> = ["home", "about", "portfolio", "contact"];
   const [lastScrollY, setLastScrollY] = useState<Number>(0);
   const [isNavbarVisible, setIsNavbarVisible] = useState<boolean>(true);
+  const [isImageReady, setIsImageReady] = useState(false);
 
   const handleScroll = () => {
     if (window.scrollY > Number(lastScrollY)) {
@@ -30,7 +32,7 @@ function Navbar() {
   }, [lastScrollY]);
 
   return (
-    <nav className="fixed z-50 right-6 left-6 top-0 md:left-12 md:right-12">
+    <nav className="fixed z-50 left-0 right-0 top-0 px-6 md:px-12 lg:px-16 max-w-7xl mx-auto">
       <div
         className={`${
           isNavbarVisible
@@ -38,9 +40,11 @@ function Navbar() {
             : "-translate-y-full mt-0"
         } md:flex md:items-center h-12 transition-all duration-300 ease-in-out transform`}
       >
-        <Link href={"/"} className="hidden md:block h-full">
-          <div className="rounded-full border-2 p-1 h-full">
+        <Link href={"/"} className="hidden md:block">
+          <div className="rounded-full overflow-hidden border-2 p-1 w-12 h-12">
+            {!isImageReady && <ImageLoadingSkeleton />}
             <Image
+              onLoad={() => setIsImageReady(true)}
               className="w-auto h-full"
               src={"/lightmode_logo.png"}
               alt="Clement Ojiguo logo"

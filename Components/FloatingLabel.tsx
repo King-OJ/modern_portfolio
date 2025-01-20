@@ -16,7 +16,7 @@ function FloatingLabel({
       <input
         type={type}
         id={name}
-        className="block py-2.5 px-0 w-full text-sm text-foreground bg-transparent border-0 border-b-2 appearance-none dark:text-white border-accent-foreground focus:outline-none focus:ring-0 focus:border-primary peer"
+        className="block py-2.5 px-0 w-full text-[16px] md:text-sm text-foreground bg-transparent border-0 border-b-2 appearance-none dark:text-white border-accent-foreground focus:outline-none focus:ring-0 focus:border-primary peer"
         placeholder=" "
       />
       <label

@@ -111,7 +111,7 @@ function ContactPage() {
                       <textarea
                         name="message"
                         id="message"
-                        className="outline-none text-foreground border-2 p-2 h-24 md:h-32 border-accent-foreground rounded-xl bg-transparent w-full"
+                        className="outline-none text-[16px] md:text-sm text-foreground border-2 p-2 h-24 md:h-32 border-accent-foreground rounded-xl bg-transparent w-full"
                       ></textarea>
                     </div>
                     <button

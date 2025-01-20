@@ -1,15 +1,7 @@
 import FlipCard from "@/Components/FlipCard";
 import { BottomProjectCard, TopProjectCard } from "@/Components/ProjectCard";
 import ProjectInfo from "@/Components/ProjectInfo";
-
-export type ProjectDetails = {
-  title: string;
-  subtitle: string;
-  photosUrl: string[] | string;
-  desc?: string;
-  liveLink?: string;
-  codeLink?: string;
-};
+import { ProjectDetails } from "@/utils/types";
 
 function PortfolioPage() {
   const projectCollections: Array<ProjectDetails> = [
