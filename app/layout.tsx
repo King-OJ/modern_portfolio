@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${kodchasan.variable} ${nunito.variable}`}>
-        <div className="px-2 sm:px-6 py-8 md:px-12 lg:px-16 md:py-10 max-w-7xl mx-auto">
+        <div className="px-2 py-4 sm:px-6 sm:py-8 md:px-12 lg:px-16 md:py-10 max-w-7xl mx-auto">
           <Navbar />
           <div className="min-h-[80vh]">{children}</div>
           <Footer />

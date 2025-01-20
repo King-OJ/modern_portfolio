@@ -11,13 +11,18 @@ function Navbar() {
   const [isImageReady, setIsImageReady] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > Number(lastScrollY)) {
-      // User is scrolling down
-      setIsNavbarVisible(false);
-    } else {
-      // User is scrolling up
+    if (window.scrollY == 0 || window.scrollY < Number(lastScrollY)) {
       setIsNavbarVisible(true);
+    } else {
+      setIsNavbarVisible(false);
     }
+    // if (window.scrollY > Number(lastScrollY)) {
+    //   // User is scrolling down
+    //   setIsNavbarVisible(false);
+    // } else {
+    //   // User is scrolling up
+    //   setIsNavbarVisible(true);
+    // }
     setLastScrollY(window.scrollY);
   };
 
@@ -57,7 +62,7 @@ function Navbar() {
         </Link>
 
         <div className="flex-1 h-full">
-          <ul className="h-full rounded-full items-center font-kodchasan border bg-muted px-6 md:px-12 flex justify-between">
+          <ul className="h-full rounded-full items-center font-kodchasan border bg-muted px-2 sm:px-6 md:px-12 flex justify-between">
             {links.map((link, index) => {
               return (
                 <li key={index}>
