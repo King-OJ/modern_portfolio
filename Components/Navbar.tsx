@@ -11,19 +11,25 @@ function Navbar() {
   const [isImageReady, setIsImageReady] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY == 0 || window.scrollY < Number(lastScrollY)) {
-      setIsNavbarVisible(true);
-    } else {
-      setIsNavbarVisible(false);
-    }
-    // if (window.scrollY > Number(lastScrollY)) {
-    //   // User is scrolling down
-    //   setIsNavbarVisible(false);
-    // } else {
-    //   // User is scrolling up
+    // if (window.scrollY == 0 || window.scrollY < Number(lastScrollY)) {
     //   setIsNavbarVisible(true);
+    // } else {
+    //   setIsNavbarVisible(false);
     // }
-    setLastScrollY(window.scrollY);
+    if (typeof window !== "undefined") {
+      if (window.scrollY == 0) {
+        setIsNavbarVisible(true);
+      } else {
+        if (window.scrollY > Number(lastScrollY)) {
+          // User is scrolling down
+          setIsNavbarVisible(false);
+        } else {
+          // User is scrolling up
+          setIsNavbarVisible(true);
+        }
+        setLastScrollY(window.scrollY);
+      }
+    }
   };
 
   useEffect(() => {

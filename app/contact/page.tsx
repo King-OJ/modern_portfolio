@@ -6,7 +6,7 @@ import FloatingLabel from "@/Components/FloatingLabel";
 
 function ContactPage() {
   return (
-    <main className="mt-10 md:mt-12 flex flex-col-reverse md:block">
+    <main className="mt-12 flex flex-col-reverse md:block">
       <div className="space-y-6 md:hidden mt-8 md:mt-0">
         <h6 className="text-lg md:text-2xl font-bold flex items-center">
           Get in touch with me!{" "}

@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="mt-10 md:mt-12">
+    <main className="mt-12">
       <section className="my-4">
         <div className="bg-muted px-6 py-10 rounded-xl border space-y-2">
           <div className="flex-col-reverse md:flex-row flex md:justify-between">
