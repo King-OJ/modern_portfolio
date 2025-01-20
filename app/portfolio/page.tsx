@@ -46,7 +46,7 @@ function PortfolioPage() {
   ];
 
   return (
-    <main className="mt-12">
+    <main className="mt-14 md:mt-12">
       <h2 className="text-2xl font-extrabold my-4 md:my-8 ">
         Project Collections
       </h2>

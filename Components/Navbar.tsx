@@ -43,7 +43,7 @@ function Navbar() {
   }, [lastScrollY]);
 
   return (
-    <nav className="fixed z-50 left-0 right-0 top-0 px-2 sm:px-6 md:px-12 lg:px-16 max-w-7xl mx-auto">
+    <nav className="fixed z-50 left-0 right-0 top-0 px-4 sm:px-6 md:px-12 lg:px-16 max-w-7xl mx-auto">
       <div
         className={`${
           isNavbarVisible
@@ -68,7 +68,7 @@ function Navbar() {
         </Link>
 
         <div className="flex-1 h-full">
-          <ul className="h-full rounded-full items-center font-kodchasan border bg-muted px-2 sm:px-6 md:px-12 flex justify-between">
+          <ul className="h-full rounded-full items-center font-kodchasan border bg-muted px-3 sm:px-6 md:px-12 flex justify-between">
             {links.map((link, index) => {
               return (
                 <li key={index}>
