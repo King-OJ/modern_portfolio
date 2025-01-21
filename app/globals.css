@@ -55,7 +55,7 @@
 
   button,
   .btn {
-    @apply h-8 px-3 text-sm rounded-md;
+    @apply h-9 px-3 text-sm md:text-base rounded-md flex justify-center items-center;
   }
   .about_box {
     @apply space-y-4 md:space-y-0 p-2 md:py-6 md:h-[290px] flex flex-col items-center md:items-start sm:justify-between;

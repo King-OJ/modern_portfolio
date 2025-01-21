@@ -16,6 +16,7 @@ datasource db {
 model Project {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
+  type        String
   title       String
   subtitle    String
   photosUrl   String[]

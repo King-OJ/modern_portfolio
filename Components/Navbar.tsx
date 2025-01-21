@@ -3,16 +3,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ImageLoadingSkeleton from "./ImageLoadingSkeleton";
+import { usePathname } from "next/navigation";
+import { NavLinks } from "@/utils/types";
 
 function Navbar() {
-  const links: Array<string> = ["home", "about", "portfolio", "contact"];
+  const links: Array<NavLinks> = [
+    { title: "home", path: "/" },
+    { title: "about", path: "/about" },
+    { title: "portfolio", path: "/portfolio" },
+    { title: "contact", path: "/contact" },
+  ];
   const [lastScrollY, setLastScrollY] = useState<Number>(0);
   const [isNavbarVisible, setIsNavbarVisible] = useState<boolean>(true);
   const [isImageReady, setIsImageReady] = useState(false);
 
+  const pathname = usePathname();
+
   const handleScroll = () => {
     if (typeof window !== "undefined") {
-      if (window.scrollY < 200) {
+      if (window.scrollY < 150) {
         setIsNavbarVisible(true);
       } else {
         if (window.scrollY > Number(lastScrollY)) {
@@ -47,11 +56,11 @@ function Navbar() {
         } md:flex md:items-center h-12 transition-all duration-300 ease-in-out transform`}
       >
         <Link href={"/"} className="hidden md:block">
-          <div className="rounded-full overflow-hidden border-2 p-1 w-12 h-12">
+          <div className="rounded-full overflow-hidden border-2 w-12 h-12">
             {!isImageReady && <ImageLoadingSkeleton />}
             <Image
               onLoad={() => setIsImageReady(true)}
-              className="w-auto h-full"
+              className="w-full h-full object-contain"
               src={"/lightmode_logo.png"}
               alt="Clement Ojiguo logo"
               width={0}
@@ -68,10 +77,12 @@ function Navbar() {
               return (
                 <li key={index}>
                   <Link
-                    href={`/${index == 0 ? "/" : link}`}
-                    className="uppercase cursor-pointer p-2 hover:text-primary transition-all duration-150 text-sm md:text-base md:font-medium font-semibold"
+                    href={link.path}
+                    className={`${
+                      pathname == link.path && "text-primary"
+                    } uppercase cursor-pointer p-2 hover:text-primary transition-all duration-150 text-sm md:text-base md:font-medium font-semibold`}
                   >
-                    {link}
+                    {link.title}
                   </Link>
                 </li>
               );
