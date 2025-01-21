@@ -1,3 +1,3 @@
-import { ProjectDetails } from "./types";
+// import { ProjectDetails } from "./types";
 
-function addProject(): Promise<ProjectDetails> {}
+// function addProject(): Promise<ProjectDetails> {}
