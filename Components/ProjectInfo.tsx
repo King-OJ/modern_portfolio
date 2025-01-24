@@ -3,16 +3,9 @@ import { Redo } from "lucide-react";
 import Link from "next/link";
 import { useContext } from "react";
 import { FlipCardContext } from "./FlipCard";
+import { ProjectDetails } from "@/utils/types";
 
-function ProjectInfo({
-  about,
-  githubLink,
-  siteLink,
-}: {
-  about: string;
-  githubLink: string;
-  siteLink: string;
-}) {
+function ProjectInfo({ project }: { project: ProjectDetails }) {
   const { flipCard } = useContext(FlipCardContext);
 
   return (
@@ -28,16 +21,16 @@ function ProjectInfo({
         </button>
       </div>
       <div className="flex-1 flex flex-col justify-between">
-        <p className="text-sm md:text-base text-left">{about}</p>
+        <p className="text-sm md:text-base text-left">{project.description}</p>
         <div className="flex items-center space-x-4">
           <Link
-            href={siteLink}
+            href={project.liveLink}
             className="bg-primary py-2 px-4 rounded-md h-9 flex items-center text-sm font-bold"
           >
             Visit Site
           </Link>
           <Link
-            href={githubLink}
+            href={project.codeLink}
             className="bg-background py-2 px-4 rounded-md h-9 flex items-center text-sm font-bold"
           >
             View Code

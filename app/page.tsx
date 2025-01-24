@@ -7,10 +7,15 @@ import ProjectInfo from "@/Components/ProjectInfo";
 import RecentWorks from "@/Components/RecentWorks";
 import { Badge } from "@/Components/ui/badge";
 import { Button } from "@/Components/ui/button";
+import { getProjects } from "@/utils/actions";
 import { Plus, Copy, CodeXml, Brush, MonitorSmartphone } from "lucide-react";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getProjects();
+
+  if (!projects) return null;
+
   return (
     <main className="mt-14 md:mt-12">
       <section className="my-4">
@@ -117,45 +122,14 @@ export default function Home() {
         </div>
         <div className="md:row-span-2 md:row-start-2 md:col-start-2 md:h-full h-[400px]">
           <FlipCard
-            front={
-              <TopProjectCard
-                title={"Responsive UI design"}
-                subtitle={"HTML, CSS"}
-                photosUrl={["/assets/showcase_1.png", "/assets/showcase.png"]}
-              />
-            }
-            back={
-              <ProjectInfo
-                about={
-                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere tenetur consequatur quidem itaque reprehenderit, commodi, aliquam adipisci quas enim dolore expedita tempora nobis qui nam quis impedit delectus consectetur amet"
-                }
-                githubLink={"#"}
-                siteLink={"#"}
-              />
-            }
+            front={<TopProjectCard project={projects[0]} />}
+            back={<ProjectInfo project={projects[0]} />}
           />
         </div>
         <div className="md:row-span-2 md:col-start-2 md:h-full h-[400px]">
           <FlipCard
-            front={
-              <BottomProjectCard
-                title={"Krist Ecommerce"}
-                subtitle={"NextJs, Prisma, Firebase, TailwindCss"}
-                photosUrl={[
-                  "/assets/krist-ecommerce.png",
-                  "/assets/krist-ecommerce2.png",
-                ]}
-              />
-            }
-            back={
-              <ProjectInfo
-                about={
-                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere tenetur consequatur quidem itaque reprehenderit, commodi, aliquam adipisci quas enim dolore expedita tempora nobis qui nam quis impedit delectus consectetur amet"
-                }
-                githubLink={"#"}
-                siteLink={"#"}
-              />
-            }
+            front={<BottomProjectCard project={projects[1]} />}
+            back={<ProjectInfo project={projects[1]} />}
           />
         </div>
       </div>
