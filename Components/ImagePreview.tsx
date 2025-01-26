@@ -19,8 +19,6 @@ export default function ImagePreview() {
     const file = event.target.files?.[0];
 
     if (file) {
-      console.log(event.target.files);
-
       // Create a FileReader to read the file
       const reader = new FileReader();
 
@@ -38,9 +36,9 @@ export default function ImagePreview() {
   };
 
   return (
-    <div className="relative">
+    <div>
       <div
-        className="w-full h-64 md:h-72 border-accent-foreground border rounded-lg cursor-pointer bg-gray-50 overflow-hidden max-w-md mx-auto"
+        className="w-full h-64 md:h-72 border-accent-foreground border rounded-lg cursor-pointer bg-gray-50 overflow-hidden"
         onClick={() => {
           fileInputRef.current?.click();
         }}

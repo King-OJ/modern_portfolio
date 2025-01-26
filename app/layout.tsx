@@ -4,6 +4,8 @@ import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 import { Kodchasan } from "next/font/google";
 import { Nunito } from "next/font/google";
+import { Toaster } from "@/Components/ui/toaster";
+import Providers from "./providers";
 
 const kodchasan = Kodchasan({
   weight: ["200", "300", "400", "500", "600", "700"],
@@ -30,11 +32,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${kodchasan.variable} ${nunito.variable}`}>
-        <div className="px-4 py-4 sm:px-6 sm:py-8 md:px-12 lg:px-16 md:py-10 max-w-7xl mx-auto">
-          <Navbar />
-          <div className="min-h-[80vh]">{children}</div>
-          <Footer />
-        </div>
+        <Providers>
+          <div className="px-4 py-4 sm:px-6 sm:py-8 md:px-12 lg:px-16 md:py-10 max-w-7xl mx-auto">
+            <Navbar />
+            <div className="min-h-[80vh]">{children}</div>
+            <Footer />
+            <Toaster />
+          </div>
+        </Providers>
       </body>
     </html>
   );

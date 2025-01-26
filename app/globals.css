@@ -61,3 +61,11 @@
     @apply space-y-4 md:space-y-0 p-2 md:py-6 md:h-[290px] flex flex-col items-center md:items-start sm:justify-between;
   }
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+input[data-autocompleted] {
+  background-color: transparent !important;
+}
