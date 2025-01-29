@@ -3,13 +3,20 @@
 // components/ImagePreview.tsx
 import { useRef, useState } from "react";
 import Image from "next/image";
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 interface ImageFile {
   name: string;
   size: number;
 }
 
-export default function ImagePreview() {
+export default function ImagePreview({
+  register,
+  errors,
+}: {
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors<FieldValues>;
+}) {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [image, setImage] = useState<ImageFile | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -83,7 +90,13 @@ export default function ImagePreview() {
           </div>
         )}
       </div>
+      {errors.images && (
+        <p className="text-sm text-red-500 mt-1">
+          {errors.images.message?.toString()}
+        </p>
+      )}
       <input
+        {...register("images")}
         ref={fileInputRef}
         type="file"
         accept="image/*"

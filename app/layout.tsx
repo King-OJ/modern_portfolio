@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
-import { Kodchasan } from "next/font/google";
-import { Nunito } from "next/font/google";
+import { Kodchasan, Nunito } from "next/font/google";
 import { Toaster } from "@/Components/ui/toaster";
 import Providers from "./providers";
 

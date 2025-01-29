@@ -2,7 +2,7 @@ import { Hand, Mail, MapPin, Phone } from "lucide-react";
 import whatsappIcon from "@/public/assets/icons8-whatsapp.svg";
 import xIcon from "@/public/assets/icons8-x.svg";
 import Image from "next/image";
-import FloatingLabel from "@/Components/FloatingLabel";
+import ContactForm from "@/Components/ContactForm";
 
 function ContactPage() {
   return (
@@ -38,9 +38,9 @@ function ContactPage() {
           </li>
         </ul>
       </div>
-      <div className="w-full h-[80vh] md:h-[70vh] flex flex-col justify-center md:max-w-4xl md:mx-auto">
+      <div className="w-full h-[80vh] md:h-[80vh] flex flex-col justify-center md:max-w-4xl md:mx-auto">
         <h2 className="text-2xl font-extrabold my-4 md:my-8 ">Contact Me</h2>
-        <div className="h-[500px] lg:h-[600px] w-full">
+        <div className="h-[500px] md:h-[600px] w-full">
           <div className="relative w-full h-full">
             <div
               className={`absolute h-full w-full 
@@ -59,7 +59,7 @@ function ContactPage() {
                border space-y-1 flex flex-col justify-center items-center bg-muted/95 rounded-xl`}
             >
               <div className="grid md:grid-cols-2 h-full w-full p-2 sm:p-4 md:p-10">
-                <div className="flex-col md:flex justify-between py-6 hidden">
+                <div className="md:flex-col md:flex md:justify-center md:space-y-12 py-6 hidden">
                   <h6 className="text-2xl font-bold flex items-center">
                     Get in touch with me!{" "}
                     <span className="ml-2 ">
@@ -90,38 +90,7 @@ function ContactPage() {
                     </li>
                   </ul>
                 </div>
-                <form
-                  action=""
-                  className="text-black h-full  rounded-xl py-4 flex items-center"
-                >
-                  <div className="space-y-8 w-full">
-                    <FloatingLabel type="text" label="your name" name="name" />
-                    <FloatingLabel
-                      type="email"
-                      label="your email"
-                      name="email"
-                    />
-                    <div className="relative">
-                      <label
-                        htmlFor="floating_outlined"
-                        className="text-sm pb-2.5 text-accent-foreground block"
-                      >
-                        Your message
-                      </label>
-                      <textarea
-                        name="message"
-                        id="message"
-                        className="outline-none text-[16px] md:text-sm text-foreground border-2 p-2 h-24 md:h-32 border-accent-foreground rounded-xl bg-transparent w-full"
-                      ></textarea>
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full bg-primary text-white font-bold"
-                    >
-                      Send message
-                    </button>
-                  </div>
-                </form>
+                <ContactForm />
               </div>
             </div>
           </div>

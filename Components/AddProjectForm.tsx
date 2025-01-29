@@ -1,13 +1,12 @@
 "use client";
 
-import { addProjectSchema, AddProjectType, ProjectType } from "@/utils/types";
+import { addProjectSchema, ProjectType } from "@/utils/types";
 import FloatingLabel from "./FloatingLabel";
 import ImagePreview from "./ImagePreview";
 import { useToast } from "@/hooks/use-toast";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
 
 function AddProjectForm() {
   const { toast } = useToast();
@@ -19,7 +18,7 @@ function AddProjectForm() {
 
     handleSubmit,
     formState: { errors },
-  } = useForm<AddProjectType>({
+  } = useForm<FieldValues>({
     resolver: zodResolver(addProjectSchema),
     defaultValues: {
       title: "",
@@ -28,10 +27,11 @@ function AddProjectForm() {
       liveLink: "",
       codeLink: "",
       type: ProjectType.WebApp,
+      images: [],
     },
   });
 
-  function onSubmit(values: AddProjectType) {
+  function onSubmit(values: FieldValues) {
     console.log(values);
     console.log("submittted");
   }
@@ -52,28 +52,28 @@ function AddProjectForm() {
           label="project title"
           name="title"
           register={register}
-          error={errors.title}
+          errors={errors}
         />
         <FloatingLabel
           type="text"
           label="project subtitle"
           name="subtitle"
           register={register}
-          error={errors.subtitle}
+          errors={errors}
         />
         <FloatingLabel
           type="text"
           label="live link"
           name="liveLink"
           register={register}
-          error={errors.liveLink}
+          errors={errors}
         />
         <FloatingLabel
           type="text"
           label="code link"
           name="codeLink"
           register={register}
-          error={errors.codeLink}
+          errors={errors}
         />
 
         <div className="relative">
@@ -100,12 +100,12 @@ function AddProjectForm() {
         >
           {typeState == ProjectType.MobileApp ? (
             <div className="max-w-lg mx-auto w-full">
-              <ImagePreview />
+              <ImagePreview register={register} errors={errors} />
             </div>
           ) : (
             <>
-              <ImagePreview />
-              <ImagePreview />
+              <ImagePreview register={register} errors={errors} />
+              <ImagePreview register={register} errors={errors} />
             </>
           )}
         </div>
@@ -119,13 +119,13 @@ function AddProjectForm() {
           </label>
           <textarea
             id="description"
-            className="outline-none placeholder:text-sm text-[16px] md:text-sm text-foreground border-2 p-2 h-24 md:h-32 border-accent-foreground rounded-xl bg-transparent w-full"
+            className="outline-none placeholder:text-sm text-[16px] md:text-sm text-foreground border-2 p-3 h-24 md:h-32 border-accent-foreground rounded-xl bg-transparent w-full"
             {...register("description")}
-            placeholder="Enter atleast 20 characters to describe this project"
+            placeholder="Describe this project"
           ></textarea>
           {errors.description && (
             <p className="text-sm text-red-500 mt-1">
-              {errors.description.message}
+              {errors.description.message?.toString()}
             </p>
           )}
         </div>
@@ -133,8 +133,8 @@ function AddProjectForm() {
           type="submit"
           className={
             isPending
-              ? "bg-primary/50 w-full text-white font-bold relative"
-              : "w-full bg-primary text-white font-bold relative"
+              ? "bg-primary/50 w-full max-w-md mx-auto text-white font-bold relative"
+              : "w-full bg-primary max-w-md mx-auto text-white font-bold relative"
           }
         >
           {isPending ? "Loading..." : "Add Project"}

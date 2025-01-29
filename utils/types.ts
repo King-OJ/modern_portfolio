@@ -22,6 +22,14 @@ export type NavLinks = {
   path: string;
 };
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
+
 export const addProjectSchema = z.object({
   title: z
     .string()
@@ -35,11 +43,22 @@ export const addProjectSchema = z.object({
     .string()
     .min(20, { message: "Description must be at least 20 characters long" }),
 
-  liveLink: z.string().url({ message: "Field must be a URL" }),
+  liveLink: z.string().url({ message: "Enter project live link" }),
 
-  codeLink: z.string().url({ message: "Field must be a URL" }),
+  codeLink: z.string().url({ message: "Enter project code link" }),
 
   type: z.nativeEnum(ProjectType),
+
+  images: z
+    .instanceof(File, {
+      message: "Please select an image file.",
+    })
+    .refine((file) => file.size <= MAX_FILE_SIZE, {
+      message: `The image is too large. Please choose an image smaller than 5MB`,
+    })
+    .refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), {
+      message: "Please upload a valid image file (JPEG, PNG, or WebP).",
+    }),
 });
 
 export type AddProjectType = z.infer<typeof addProjectSchema>;
