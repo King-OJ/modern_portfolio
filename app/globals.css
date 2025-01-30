@@ -53,6 +53,11 @@
     @apply hover:bg-opacity-90 transition-all duration-150;
   }
 
+  button:disabled,
+  a:disabled {
+    @apply bg-opacity-60;
+  }
+
   button,
   .btn {
     @apply h-9 px-3 text-sm md:text-base rounded-md flex justify-center items-center;

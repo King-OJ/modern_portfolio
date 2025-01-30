@@ -10,12 +10,14 @@ const kodchasan = Kodchasan({
   weight: ["200", "300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-kodchasan",
+  preload: false,
 });
 
 const nunito = Nunito({
   weight: ["200", "300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-nunito",
+  preload: false,
 });
 
 export const metadata: Metadata = {

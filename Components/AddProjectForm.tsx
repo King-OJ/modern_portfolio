@@ -2,7 +2,7 @@
 
 import { addProjectSchema, ProjectType } from "@/utils/types";
 import FloatingLabel from "./FloatingLabel";
-import ImagePreview from "./ImagePreview";
+import SingleImagePreview from "./ImagePreview";
 import { useToast } from "@/hooks/use-toast";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,20 +15,25 @@ function AddProjectForm() {
   const {
     register,
     watch,
-
+    trigger,
     handleSubmit,
-    formState: { errors },
+    setValue,
+    getValues,
+    formState: { errors, isValid },
   } = useForm<FieldValues>({
     resolver: zodResolver(addProjectSchema),
     defaultValues: {
-      title: "",
-      subtitle: "",
-      description: "",
-      liveLink: "",
-      codeLink: "",
+      title: "Loop Studios",
+      subtitle: "HTML",
+      description: "sadsdadsdsadsdsassdaddasdssddssaddasadsadsa",
+      liveLink: "https://www.link.com",
+      codeLink: "https://www.link.com",
       type: ProjectType.WebApp,
-      images: [],
+      mobileImage: undefined,
+      webImage1: undefined,
+      webImage2: undefined,
     },
+    mode: "all",
   });
 
   function onSubmit(values: FieldValues) {
@@ -91,22 +96,35 @@ function AddProjectForm() {
             <option value={ProjectType.MobileApp}>Mobile App</option>
           </select>
         </div>
-        <div
-          className={
-            typeState == ProjectType.WebApp
-              ? "relative grid grid-cols-2 gap-2"
-              : "relative grid"
-          }
-        >
+
+        <div className="max-w-3xl mx-auto w-full relative">
           {typeState == ProjectType.MobileApp ? (
-            <div className="max-w-lg mx-auto w-full">
-              <ImagePreview register={register} errors={errors} />
+            <div className="max-w-md mx-auto">
+              <SingleImagePreview
+                setValue={setValue}
+                trigger={trigger}
+                register={register}
+                errors={errors}
+                name="mobileImage"
+              />
             </div>
           ) : (
-            <>
-              <ImagePreview register={register} errors={errors} />
-              <ImagePreview register={register} errors={errors} />
-            </>
+            <div className="grid grid-cols-2 gap-4">
+              <SingleImagePreview
+                setValue={setValue}
+                trigger={trigger}
+                register={register}
+                errors={errors}
+                name="webImage1"
+              />
+              <SingleImagePreview
+                setValue={setValue}
+                trigger={trigger}
+                register={register}
+                errors={errors}
+                name="webImage2"
+              />
+            </div>
           )}
         </div>
 
@@ -136,6 +154,7 @@ function AddProjectForm() {
               ? "bg-primary/50 w-full max-w-md mx-auto text-white font-bold relative"
               : "w-full bg-primary max-w-md mx-auto text-white font-bold relative"
           }
+          // disabled={!isValid}
         >
           {isPending ? "Loading..." : "Add Project"}
         </button>
