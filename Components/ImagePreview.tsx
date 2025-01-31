@@ -42,7 +42,7 @@ export default function SingleImagePreview({
     const file: File | undefined = e.target.files?.[0];
 
     if (file) {
-      setValue(name, e.target.files);
+      setValue(name, file);
       trigger(name);
       // Create a FileReader to read the file
       const reader = new FileReader();

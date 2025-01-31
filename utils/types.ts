@@ -51,40 +51,28 @@ export const addProjectSchema = z
     type: z.nativeEnum(ProjectType),
 
     mobileImage: z
-      .instanceof(FileList, { message: "Please provide the mobile app photo" }) // Ensure it's a FileList
-      .refine((files) => files.length === 1, {
-        message: "You must upload exactly 1 file.",
-      })
-      .transform((files) => Array.from(files)[0]) // Convert FileList to array and take the first file
+      .instanceof(File, { message: "Please provide the mobile app photo" })
       .refine((file) => allowedImageMimeTypes.includes(file.type), {
         message: "The file must be an image (JPEG, PNG, GIF, or WebP).",
-      }) // Validate that the file is an image
+      })
       .refine((file) => file.size <= maxFileSize, {
         message: "The file must be 5MB or smaller.",
       })
       .optional(),
     webImage1: z
-      .instanceof(FileList, { message: "Please provide the website photo1" }) // Ensure it's a FileList
-      .refine((files) => files.length === 1, {
-        message: "You must upload exactly 1 file.",
-      })
-      .transform((files) => Array.from(files)[0]) // Convert FileList to array and take the first file
+      .instanceof(File, { message: "Please provide the website photo1" })
       .refine((file) => allowedImageMimeTypes.includes(file.type), {
         message: "The file must be an image (JPEG, PNG, GIF, or WebP).",
-      }) // Validate that the file is an image
+      })
       .refine((file) => file.size <= maxFileSize, {
         message: "The file must be 5MB or smaller.",
       })
       .optional(),
     webImage2: z
-      .instanceof(FileList, { message: "Please provide the website photo2" }) // Ensure it's a FileList
-      .refine((files) => files.length === 1, {
-        message: "You must upload exactly 1 file.",
-      })
-      .transform((files) => Array.from(files)[0]) // Convert FileList to array and take the first file
+      .instanceof(File, { message: "Please provide the website photo2" })
       .refine((file) => allowedImageMimeTypes.includes(file.type), {
         message: "The file must be an image (JPEG, PNG, GIF, or WebP).",
-      }) // Validate that the file is an image
+      })
       .refine((file) => file.size <= maxFileSize, {
         message: "The file must be 5MB or smaller.",
       })

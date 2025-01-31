@@ -7,10 +7,13 @@ import { useToast } from "@/hooks/use-toast";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import axios from "axios";
 
 function AddProjectForm() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -18,8 +21,7 @@ function AddProjectForm() {
     trigger,
     handleSubmit,
     setValue,
-    getValues,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FieldValues>({
     resolver: zodResolver(addProjectSchema),
     defaultValues: {
@@ -35,10 +37,18 @@ function AddProjectForm() {
     },
     mode: "all",
   });
+  async function uploadImageToCloudinary(image: File) {
+    const response = await axios.post(
+      "https://api.cloudinary.com/v1_1/your_cloud_name/upload",
+      image
+    );
+  }
 
-  function onSubmit(values: FieldValues) {
+  async function onSubmit(values: FieldValues) {
     console.log(values);
-    console.log("submittted");
+    try {
+      setLoading(true);
+    } catch (error) {}
   }
 
   const { mutate, isPending } = useMutation({});
@@ -154,7 +164,7 @@ function AddProjectForm() {
               ? "bg-primary/50 w-full max-w-md mx-auto text-white font-bold relative"
               : "w-full bg-primary max-w-md mx-auto text-white font-bold relative"
           }
-          // disabled={!isValid}
+          disabled={loading}
         >
           {isPending ? "Loading..." : "Add Project"}
         </button>
