@@ -1,17 +1,27 @@
-import prisma from "@/utils/db";
 import { NextResponse } from "next/server";
+import prisma from "@/utils/db";
+import { AddProjectType } from "@/utils/types";
 
 export async function POST(req: Request) {
-  try {
-    const projectValues = await req.json();
-    const project = await prisma.project.create({ data: projectValues });
+  const {
+    subtitle,
+    title,
+    liveLink,
+    codeLink,
+    photosUrl,
+    type,
+  }: AddProjectType = await req.json();
 
-    return NextResponse.json(project, { status: 200 });
-  } catch (error) {
-    console.error("Error saving project:", error);
-    return NextResponse.json(
-      { error: "Adding project failed!" },
-      { status: 500 }
-    );
-  }
+  // Save form data to PostgreSQL using Prisma
+  const newFormData = await prisma.project.create({
+    data: {
+      subtitle,
+      title,
+      liveLink,
+      codeLink,
+      type,
+    },
+  });
+
+  return NextResponse.json(newFormData);
 }

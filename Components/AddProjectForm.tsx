@@ -1,10 +1,10 @@
 "use client";
 
-import { addProjectSchema, ProjectType } from "@/utils/types";
+import { addProjectSchema, AddProjectType, ProjectType } from "@/utils/types";
 import FloatingLabel from "./FloatingLabel";
 import SingleImagePreview from "./ImagePreview";
 import { useToast } from "@/hooks/use-toast";
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
@@ -14,6 +14,7 @@ function AddProjectForm() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const {
     register,
@@ -22,7 +23,7 @@ function AddProjectForm() {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<FieldValues>({
+  } = useForm<AddProjectType>({
     resolver: zodResolver(addProjectSchema),
     defaultValues: {
       title: "Loop Studios",
@@ -30,25 +31,14 @@ function AddProjectForm() {
       description: "sadsdadsdsadsdsassdaddasdssddssaddasadsadsa",
       liveLink: "https://www.link.com",
       codeLink: "https://www.link.com",
-      type: ProjectType.WebApp,
-      mobileImage: undefined,
-      webImage1: undefined,
-      webImage2: undefined,
+      type: ProjectType.MobileApp,
+      images: [],
     },
     mode: "all",
   });
-  async function uploadImageToCloudinary(image: File) {
-    const response = await axios.post(
-      "https://api.cloudinary.com/v1_1/your_cloud_name/upload",
-      image
-    );
-  }
 
-  async function onSubmit(values: FieldValues) {
+  async function onSubmit(values: AddProjectType) {
     console.log(values);
-    try {
-      setLoading(true);
-    } catch (error) {}
   }
 
   const { mutate, isPending } = useMutation({});
@@ -109,15 +99,13 @@ function AddProjectForm() {
 
         <div className="max-w-3xl mx-auto w-full relative">
           {typeState == ProjectType.MobileApp ? (
-            <div className="max-w-md mx-auto">
-              <SingleImagePreview
-                setValue={setValue}
-                trigger={trigger}
-                register={register}
-                errors={errors}
-                name="mobileImage"
-              />
-            </div>
+            <SingleImagePreview
+              setValue={setValue}
+              trigger={trigger}
+              register={register}
+              errors={errors}
+              name="images"
+            />
           ) : (
             <div className="grid grid-cols-2 gap-4">
               <SingleImagePreview
@@ -125,14 +113,14 @@ function AddProjectForm() {
                 trigger={trigger}
                 register={register}
                 errors={errors}
-                name="webImage1"
+                name="images"
               />
               <SingleImagePreview
                 setValue={setValue}
                 trigger={trigger}
                 register={register}
                 errors={errors}
-                name="webImage2"
+                name="images"
               />
             </div>
           )}
