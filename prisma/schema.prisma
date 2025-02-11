@@ -19,7 +19,7 @@ model Project {
   type        String
   title       String
   subtitle    String
-  photosUrl   String[]
+  imageUrls   String[]
   description String
   liveLink    String
   codeLink    String

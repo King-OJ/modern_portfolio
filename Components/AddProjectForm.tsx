@@ -7,20 +7,28 @@ import { useToast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
+import { useDropzone } from "react-dropzone";
+
+export interface ImagePreview {
+  file: File;
+  preview: string;
+}
 
 function AddProjectForm() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const [loading, setLoading] = useState(false);
-  const [uploading, setUploading] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+
+  const [imagePreviews, setImagePreviews] = useState<ImagePreview[]>([]);
 
   const {
     register,
-    watch,
-    trigger,
     handleSubmit,
+    watch,
     setValue,
     formState: { errors },
   } = useForm<AddProjectType>({
@@ -32,22 +40,125 @@ function AddProjectForm() {
       liveLink: "https://www.link.com",
       codeLink: "https://www.link.com",
       type: ProjectType.MobileApp,
-      images: [],
+      imageUrls: [],
     },
-    mode: "all",
+  });
+
+  // Watch imageUrls to help with debugging
+  const imageUrls = watch("imageUrls");
+
+  const removeImage = (index: number) => {
+    setImagePreviews((prevs) => {
+      const newPreviews = [...prevs];
+      URL.revokeObjectURL(newPreviews[index].preview);
+      newPreviews.splice(index, 1);
+      return newPreviews;
+    });
+
+    const newImageUrls = [...imageUrls];
+    newImageUrls.splice(index, 1);
+    setValue("imageUrls", newImageUrls, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+  };
+
+  const uploadToServer = async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    return axios
+      .post(`/api/upload-img`, formData)
+      .then((response) => response.data.url)
+      .catch((error) => {
+        throw new Error(`Failed to upload image: ${error.message}`);
+      });
+  };
+
+  const onDrop = useCallback(
+    async (acceptedFiles: File[]) => {
+      const newPreviews = acceptedFiles.map((file) => ({
+        file,
+        preview: URL.createObjectURL(file),
+      }));
+
+      setImagePreviews((prevs) => [...prevs, ...newPreviews]);
+
+      // Immediately start uploading to Cloudinary
+      setIsUploading(true);
+      setUploadProgress(0);
+
+      try {
+        const uploadPromises = acceptedFiles.map((file) =>
+          uploadToServer(file)
+        );
+        const totalFiles = acceptedFiles.length;
+        let completedUploads = 0;
+
+        const urls = await Promise.all(
+          uploadPromises.map((promise) =>
+            promise.then((url) => {
+              completedUploads++;
+              setUploadProgress((completedUploads / totalFiles) * 100);
+              return url;
+            })
+          )
+        );
+
+        setValue("imageUrls", [...imageUrls, ...urls], {
+          shouldValidate: true,
+          shouldDirty: true,
+          shouldTouch: true,
+        });
+      } catch (error) {
+        console.log("Error submitting form:", error);
+      } finally {
+        setIsUploading(false);
+        setUploadProgress(0);
+      }
+    },
+    [setValue, imageUrls]
+  );
+
+  const { isDragActive, getRootProps, getInputProps } = useDropzone({
+    accept: {
+      "image/*": [".jpeg", ".jpg", ".png", ".webp"],
+    },
+    onDrop,
   });
 
   async function onSubmit(values: AddProjectType) {
-    console.log(values);
+    setIsSubmitting(true);
+    await axios
+      .post(`/api/add-project`, values)
+      .then((result) => {
+        toast({ title: `${result.data.title} added succesfully!` });
+        setIsSubmitting(false);
+      })
+      .catch((error) => {
+        toast({
+          variant: "destructive",
+          title: `Failed to add project: ${error.message}`,
+        });
+        setIsSubmitting(false);
+        throw new Error(`Failed to add project: ${error.message}`);
+      });
   }
 
-  const { mutate, isPending } = useMutation({});
+  // const { mutate, isPending } = useMutation({});
 
-  const typeState = watch("type");
+  // Cleanup previews on unmount
+  useEffect(() => {
+    return () => {
+      imagePreviews.forEach((preview) => {
+        URL.revokeObjectURL(preview.preview);
+      });
+    };
+  }, [imagePreviews]);
 
   return (
     <form
-      encType="multipart/form-data"
       className="text-black h-full rounded-xl p-6 flex items-center"
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -89,7 +200,6 @@ function AddProjectForm() {
           <select
             {...register("type")}
             id="type"
-            defaultValue={ProjectType.WebApp}
             className="focus:outline-none py-2.5 border-b-2 block px-0 w-full bg-transparent text-accent-foreground border-accent-foreground"
           >
             <option value={ProjectType.WebApp}>Web App</option>
@@ -98,33 +208,39 @@ function AddProjectForm() {
         </div>
 
         <div className="max-w-3xl mx-auto w-full relative">
-          {typeState == ProjectType.MobileApp ? (
+          <div>
+            <label
+              htmlFor="images"
+              className="text-accent-foreground text-sm mb-2 block"
+            >
+              Project Image
+            </label>
             <SingleImagePreview
-              setValue={setValue}
-              trigger={trigger}
-              register={register}
+              removeImage={removeImage}
+              isDragActive={isDragActive}
               errors={errors}
-              name="images"
+              isUploading={isUploading}
+              getRootProps={getRootProps}
+              getInputProps={getInputProps}
+              imagePreviews={imagePreviews}
             />
-          ) : (
-            <div className="grid grid-cols-2 gap-4">
-              <SingleImagePreview
-                setValue={setValue}
-                trigger={trigger}
-                register={register}
-                errors={errors}
-                name="images"
-              />
-              <SingleImagePreview
-                setValue={setValue}
-                trigger={trigger}
-                register={register}
-                errors={errors}
-                name="images"
-              />
-            </div>
-          )}
+          </div>
         </div>
+
+        {/* Upload progress */}
+        {isUploading && (
+          <div className="mt-4 relative">
+            <div className="w-full bg-gray-200 rounded-full h-2.5">
+              <div
+                className="bg-primary h-2.5 rounded-full"
+                style={{ width: `${uploadProgress}%` }}
+              ></div>
+            </div>
+            <p className="text-sm text-white mt-1">
+              Uploading... {Math.round(uploadProgress)}%
+            </p>
+          </div>
+        )}
 
         <div className="relative">
           <label
@@ -145,16 +261,17 @@ function AddProjectForm() {
             </p>
           )}
         </div>
+
         <button
           type="submit"
           className={
-            isPending
+            isUploading
               ? "bg-primary/50 w-full max-w-md mx-auto text-white font-bold relative"
               : "w-full bg-primary max-w-md mx-auto text-white font-bold relative"
           }
-          disabled={loading}
+          disabled={isUploading || isSubmitting}
         >
-          {isPending ? "Loading..." : "Add Project"}
+          {isUploading ? "Uploading image..." : "Add Project"}
         </button>
       </div>
     </form>

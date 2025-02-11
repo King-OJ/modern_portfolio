@@ -1,38 +1,40 @@
 import { NextResponse } from "next/server";
-import multer from "multer";
-import cloudinary from "cloudinary";
-import { IncomingMessage } from "http";
+import { v2 as cloudinary } from "cloudinary";
 
-// Initialize Cloudinary
-cloudinary.v2.config({
-  cloud_name: process.env.CLOUD_NAME,
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const upload = multer({ dest: "uploads/" });
+export async function POST(req: Request) {
+  try {
+    const formData = await req.formData();
+    const file = formData.get("file") as File;
+    if (!file) {
+      return NextResponse.json({ error: "No file provided" }, { status: 400 });
+    }
 
-export async function POST(req: IncomingMessage) {
-  return new Promise((resolve, reject) => {
-    upload.single("image")(req, {} as any, async (err) => {
-      if (err) {
-        reject(err);
-      }
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const fileStr = `data:${file.type};base64,${buffer.toString("base64")}`;
 
-      const file = (req as any).file;
-
-      // Upload image to Cloudinary
-      cloudinary.v2.uploader.upload(file.path, async (error, result) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(
-            NextResponse.json({
-              imageUrl: result?.secure_url,
-            })
-          );
-        }
-      });
+    const result = await cloudinary.uploader.upload(fileStr, {
+      folder: "portfolio",
     });
-  });
+
+    return NextResponse.json({ url: result.secure_url });
+  } catch (error) {
+    console.error("Error uploading to Cloudinary:", error);
+    return NextResponse.json(
+      { error: "Failed to upload image" },
+      { status: 500 }
+    );
+  }
 }
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};

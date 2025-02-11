@@ -58,24 +58,34 @@ export const addProjectSchema = z.object({
 
   type: z.nativeEnum(ProjectType),
 
-  images: z
-    .array(z.instanceof(File)) // Accept array of File objects instead of string
+  imageUrls: z
+    .array(z.string().url("Invalid image URL"))
     .min(1, "At least one image is required"),
 });
 // .refine(
 //   (data) => {
-//     if (
-//       data.type == ProjectType.MobileApp &&
-//       data.mobileImageUrl == undefined
-//     ) {
+//     if (data.type == ProjectType.WebApp && data.images.length < 2) {
 //       return false;
 //     }
 //     return true;
 //   },
 //   {
-//     message: "Please upload a project photo",
-//     path: ["mobileImage"],
+//     message:
+//       "Please select exactly 2 project photo. First remove this photo and select exactly 2 photos",
+//     path: ["images"],
 //   }
 // )
+// .refine(
+//   (data) => {
+//     if (data.type == ProjectType.WebApp && data.images.length > 2) {
+//       return false;
+//     }
+//     return true;
+//   },
+//   {
+//     message: "Please select exactly 2 project photos",
+//     path: ["images"],
+//   }
+// );
 
 export type AddProjectType = z.infer<typeof addProjectSchema>;
