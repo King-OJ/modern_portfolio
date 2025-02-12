@@ -9,12 +9,13 @@ export type ProjectDetails = {
   id: number;
   createdAt: Date;
   title: string;
-  type: ProjectType;
+  type: ProjectType | string;
   subtitle: string;
-  photosUrl: string[];
+  imageUrls: string[];
   description: string;
   liveLink: string;
   codeLink: string;
+  showcase: boolean;
 };
 
 export type NavLinks = {
@@ -29,15 +30,6 @@ const allowedImageMimeTypes = [
   "image/png",
   "image/webp",
 ];
-
-const imgSchema = z
-  .instanceof(File, { message: "Please provide the project photo" })
-  .refine((file) => allowedImageMimeTypes.includes(file.type), {
-    message: "The file must be an image (JPEG, PNG, GIF, or WebP).",
-  })
-  .refine((file) => file.size <= maxFileSize, {
-    message: "The file must be 5MB or smaller.",
-  });
 
 export const addProjectSchema = z.object({
   title: z
@@ -58,34 +50,20 @@ export const addProjectSchema = z.object({
 
   type: z.nativeEnum(ProjectType),
 
+  showcase: z.boolean(),
+
   imageUrls: z
     .array(z.string().url("Invalid image URL"))
     .min(1, "At least one image is required"),
 });
-// .refine(
-//   (data) => {
-//     if (data.type == ProjectType.WebApp && data.images.length < 2) {
-//       return false;
-//     }
-//     return true;
-//   },
-//   {
-//     message:
-//       "Please select exactly 2 project photo. First remove this photo and select exactly 2 photos",
-//     path: ["images"],
-//   }
-// )
-// .refine(
-//   (data) => {
-//     if (data.type == ProjectType.WebApp && data.images.length > 2) {
-//       return false;
-//     }
-//     return true;
-//   },
-//   {
-//     message: "Please select exactly 2 project photos",
-//     path: ["images"],
-//   }
-// );
+
+export interface PaginatedResponse {
+  projects: ProjectDetails[];
+  total: number;
+  currentPage: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+}
 
 export type AddProjectType = z.infer<typeof addProjectSchema>;

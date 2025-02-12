@@ -25,15 +25,19 @@ export function TopProjectCard({ project }: { project: ProjectDetails }) {
 
       <div className="mt-4 flex-1 w-full flex justify-center items-center relative">
         <div className="w-64 h-52 relative rotate-[4deg] -mr-8 -mb-8 rounded-2xl overflow-hidden">
-          <RoundedCornerImg border src={project.photosUrl[0]} position="left" />
+          <RoundedCornerImg
+            border
+            src={project.imageUrls[0]}
+            position="center"
+          />
         </div>
 
         <div className="shadow-xl absolute w-64 h-56 -rotate-[6deg] -ml-12">
           <div className="relative h-full w-full rounded-2xl overflow-hidden">
             <RoundedCornerImg
               border
-              src={project.photosUrl[0]}
-              position="left"
+              src={project.imageUrls[1]}
+              position="center"
             />
           </div>
         </div>
@@ -62,15 +66,19 @@ export function BottomProjectCard({ project }: { project: ProjectDetails }) {
 
       <div className="mt-4 flex-1 w-full flex justify-center items-center relative">
         <div className="w-64 h-56 relative  -mr-6 -mb-10 rounded-2xl overflow-hidden">
-          <RoundedCornerImg border src={project.photosUrl[0]} position="left" />
+          <RoundedCornerImg
+            border
+            src={project.imageUrls[1]}
+            position="center"
+          />
         </div>
 
         <div className="absolute shadow-xl w-64 h-56 -ml-8">
           <div className="relative h-full w-full rounded-2xl overflow-hidden">
             <RoundedCornerImg
               border
-              src={project.photosUrl[0]}
-              position="center"
+              src={project.imageUrls[0]}
+              position="left"
             />
           </div>
         </div>

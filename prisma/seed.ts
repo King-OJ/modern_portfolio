@@ -43,17 +43,13 @@ const projectData = [
 
 async function main() {
   const allProjects = await prisma.project.findMany();
-  for (const project of allProjects) {
-    await prisma.project.delete({
-      where: {
-        id: project.id,
-      },
-    });
-  }
+  // for (const project of allProjects) {
+  //   await prisma.project.delete();
+  // }
   for (const project of projectData) {
     await prisma.project.create({ data: project });
   }
-  console.log("data sent");
+  console.log("data deleted");
 }
 
 main()

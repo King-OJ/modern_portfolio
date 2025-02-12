@@ -24,12 +24,14 @@ function ProjectInfo({ project }: { project: ProjectDetails }) {
         <p className="text-sm md:text-base text-left">{project.description}</p>
         <div className="flex items-center space-x-4">
           <Link
+            target="_blank"
             href={project.liveLink}
             className="bg-primary py-2 px-4 rounded-md h-9 flex items-center text-sm font-bold"
           >
             Visit Site
           </Link>
           <Link
+            target="_blank"
             href={project.codeLink}
             className="bg-background py-2 px-4 rounded-md h-9 flex items-center text-sm font-bold"
           >

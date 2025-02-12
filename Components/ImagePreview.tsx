@@ -4,10 +4,10 @@ import Image from "next/image";
 import { FieldErrors } from "react-hook-form";
 import { X } from "lucide-react";
 import { AddProjectType } from "@/utils/types";
-import { ImagePreview } from "./AddProjectForm";
+import { ImagePreviewType } from "./AddProjectForm";
 import { DropzoneInputProps, DropzoneRootProps } from "react-dropzone";
 
-export default function SingleImagePreview({
+export default function ImagePreview({
   errors,
   isDragActive,
   getRootProps,
@@ -18,7 +18,7 @@ export default function SingleImagePreview({
 }: {
   isUploading: boolean;
   isDragActive: boolean;
-  imagePreviews: ImagePreview[];
+  imagePreviews: ImagePreviewType[];
   removeImage: (index: number) => void;
   errors: FieldErrors<AddProjectType>;
   getRootProps: <T extends DropzoneRootProps>(props?: T) => T;

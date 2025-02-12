@@ -2,28 +2,28 @@
 
 import { addProjectSchema, AddProjectType, ProjectType } from "@/utils/types";
 import FloatingLabel from "./FloatingLabel";
-import SingleImagePreview from "./ImagePreview";
+import ImagePreview from "./ImagePreview";
 import { useToast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { useDropzone } from "react-dropzone";
+import { Checkbox } from "./ui/checkbox";
 
-export interface ImagePreview {
+export interface ImagePreviewType {
   file: File;
   preview: string;
 }
 
 function AddProjectForm() {
   const { toast } = useToast();
-  const queryClient = useQueryClient();
   const [isUploading, setIsUploading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [imgError, setImgError] = useState<string>("");
 
-  const [imagePreviews, setImagePreviews] = useState<ImagePreview[]>([]);
+  const [imagePreviews, setImagePreviews] = useState<ImagePreviewType[]>([]);
 
   const {
     register,
@@ -31,21 +31,25 @@ function AddProjectForm() {
     watch,
     setValue,
     formState: { errors },
+    reset,
   } = useForm<AddProjectType>({
     resolver: zodResolver(addProjectSchema),
     defaultValues: {
-      title: "Loop Studios",
-      subtitle: "HTML",
-      description: "sadsdadsdsadsdsassdaddasdssddssaddasadsadsa",
-      liveLink: "https://www.link.com",
-      codeLink: "https://www.link.com",
-      type: ProjectType.MobileApp,
+      title: "",
+      subtitle: "",
+      description: "",
+      liveLink: "",
+      codeLink: "",
+      type: ProjectType.WebApp,
       imageUrls: [],
+      showcase: false,
     },
   });
 
   // Watch imageUrls to help with debugging
   const imageUrls = watch("imageUrls");
+  const showcaseValue = watch("showcase");
+  const typeValue = watch("type");
 
   const removeImage = (index: number) => {
     setImagePreviews((prevs) => {
@@ -78,6 +82,11 @@ function AddProjectForm() {
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
+      setImgError("");
+      if (typeValue == ProjectType.WebApp && acceptedFiles.length !== 2) {
+        setImgError("Please upload exactly 2 photos for Web Project Type");
+        return;
+      }
       const newPreviews = acceptedFiles.map((file) => ({
         file,
         preview: URL.createObjectURL(file),
@@ -118,13 +127,15 @@ function AddProjectForm() {
         setUploadProgress(0);
       }
     },
-    [setValue, imageUrls]
+    [setValue, imageUrls, typeValue]
   );
 
   const { isDragActive, getRootProps, getInputProps } = useDropzone({
     accept: {
       "image/*": [".jpeg", ".jpg", ".png", ".webp"],
     },
+    multiple: typeValue == ProjectType.WebApp,
+    maxFiles: typeValue == ProjectType.MobileApp ? 1 : 2,
     onDrop,
   });
 
@@ -144,6 +155,12 @@ function AddProjectForm() {
         setIsSubmitting(false);
         throw new Error(`Failed to add project: ${error.message}`);
       });
+
+    reset();
+    imagePreviews.forEach((preview) => {
+      URL.revokeObjectURL(preview.preview);
+    });
+    setImagePreviews([]);
   }
 
   // const { mutate, isPending } = useMutation({});
@@ -215,7 +232,7 @@ function AddProjectForm() {
             >
               Project Image
             </label>
-            <SingleImagePreview
+            <ImagePreview
               removeImage={removeImage}
               isDragActive={isDragActive}
               errors={errors}
@@ -224,6 +241,7 @@ function AddProjectForm() {
               getInputProps={getInputProps}
               imagePreviews={imagePreviews}
             />
+            {imgError && <div className="mt-4 text-red-500">{imgError}</div>}
           </div>
         </div>
 
@@ -241,6 +259,21 @@ function AddProjectForm() {
             </p>
           </div>
         )}
+
+        <div className="flex items-center space-x-2 relative">
+          <Checkbox
+            checked={showcaseValue}
+            onCheckedChange={(checked: boolean | "indeterminate") => {
+              setValue("showcase", checked === true, { shouldValidate: true });
+            }}
+          />
+          <label
+            htmlFor="showcase"
+            className="text-sm text-white font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Showcase this project
+          </label>
+        </div>
 
         <div className="relative">
           <label

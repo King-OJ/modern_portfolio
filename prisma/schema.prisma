@@ -23,4 +23,5 @@ model Project {
   description String
   liveLink    String
   codeLink    String
+  showcase    Boolean
 }

@@ -7,14 +7,24 @@ import ProjectInfo from "@/Components/ProjectInfo";
 import RecentWorks from "@/Components/RecentWorks";
 import { Badge } from "@/Components/ui/badge";
 import { Button } from "@/Components/ui/button";
-import { getProjects } from "@/utils/actions";
+import prisma from "@/utils/db";
 import { Plus, Copy, CodeXml, Brush, MonitorSmartphone } from "lucide-react";
 import Link from "next/link";
 
 export default async function Home() {
-  const projects = await getProjects();
+  const projects = await prisma.project.findMany({
+    where: {
+      showcase: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 
-  if (!projects) return null;
+  const webProjects = projects.filter((project) => project.type == "WebApp");
+  const mobileProjects = projects.filter(
+    (project) => project.type == "MobileApp"
+  );
 
   return (
     <main className="mt-14 md:mt-12">
@@ -113,23 +123,18 @@ export default async function Home() {
         </div>
 
         <div className="md:col-start-1 md:row-span-3 h-[600px] md:h-full">
-          <MobileProjectCard
-            projectTitle={"Media X"}
-            projectSubtitle={"SwiftUI, Firebase, KingFisher"}
-            projectLink={"www.test"}
-            projectPhotoUrl={"/assets/krist-ecommerce.png"}
-          />
+          <MobileProjectCard project={mobileProjects[0]} />
         </div>
         <div className="md:row-span-2 md:row-start-2 md:col-start-2 md:h-full h-[400px]">
           <FlipCard
-            front={<TopProjectCard project={projects[0]} />}
-            back={<ProjectInfo project={projects[0]} />}
+            front={<TopProjectCard project={webProjects[0]} />}
+            back={<ProjectInfo project={webProjects[0]} />}
           />
         </div>
         <div className="md:row-span-2 md:col-start-2 md:h-full h-[400px]">
           <FlipCard
-            front={<BottomProjectCard project={projects[1]} />}
-            back={<ProjectInfo project={projects[1]} />}
+            front={<BottomProjectCard project={webProjects[1]} />}
+            back={<ProjectInfo project={webProjects[1]} />}
           />
         </div>
       </div>

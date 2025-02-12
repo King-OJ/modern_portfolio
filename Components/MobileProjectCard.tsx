@@ -1,26 +1,15 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import RoundedCornerImg from "./RoundedCornerImg";
+import { ProjectDetails } from "@/utils/types";
 
-interface MobileProjectCardProps {
-  projectTitle: string;
-  projectSubtitle: string;
-  projectLink: string;
-  projectPhotoUrl: string;
-}
-
-function MobileProjectCard({
-  projectTitle,
-  projectLink,
-  projectSubtitle,
-  projectPhotoUrl,
-}: MobileProjectCardProps) {
+function MobileProjectCard({ project }: { project: ProjectDetails }) {
   return (
     <div className="px-6 pt-8 rounded-xl border flex flex-col h-full items-center bg-muted">
       <div className="flex items-center justify-between w-full">
         <div className="space-y-1">
-          <h3 className="font-semibold">{projectTitle}</h3>
-          <h5 className="text-accent-foreground text-sm">{projectSubtitle}</h5>
+          <h3 className="font-semibold">{project.title}</h3>
+          <h5 className="text-accent-foreground text-sm">{project.subtitle}</h5>
         </div>
         <button className="p-1 rounded-full h-8 w-8 grid place-content-center bg-primary">
           <ArrowUpRight />
