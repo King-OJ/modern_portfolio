@@ -8,7 +8,7 @@ import { ProjectDetails } from "@/utils/types";
 
 interface PageProps {
   searchParams: {
-    page?: string;
+    page?: Promise<string>;
   };
 }
 
