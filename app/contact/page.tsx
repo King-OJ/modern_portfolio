@@ -1,3 +1,4 @@
+import React from "react";
 import { Hand, Mail, MapPin, Phone } from "lucide-react";
 import whatsappIcon from "@/public/assets/icons8-whatsapp.svg";
 import xIcon from "@/public/assets/icons8-x.svg";

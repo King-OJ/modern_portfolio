@@ -1,3 +1,4 @@
+import React from "react";
 import Card from "@/Components/Card";
 import FlipCard from "@/Components/FlipCard";
 import MobileProjectCard from "@/Components/MobileProjectCard";
@@ -23,7 +24,7 @@ export default async function Home() {
 
   const webProjects = projects.filter((project) => project.type == "WebApp");
   const mobileProjects = projects.filter(
-    (project) => project.type == "MobileApp"
+    (project) => project.type == "MobileApp",
   );
 
   return (

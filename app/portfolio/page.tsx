@@ -1,3 +1,4 @@
+import React from "react";
 import FlipCard from "@/Components/FlipCard";
 import { Pagination } from "@/Components/Pagination";
 import { BottomProjectCard, TopProjectCard } from "@/Components/ProjectCard";
@@ -5,11 +6,13 @@ import ProjectInfo from "@/Components/ProjectInfo";
 import prisma from "@/utils/db";
 import { ProjectDetails } from "@/utils/types";
 
-async function PortfolioPage({
-  searchParams,
-}: {
-  searchParams: { page?: string };
-}) {
+interface PageProps {
+  searchParams: {
+    page?: string;
+  };
+}
+
+async function PortfolioPage({ searchParams }: PageProps) {
   const { page } = await searchParams;
   const currentPage = Number(page) || 1;
   const limit = 4;

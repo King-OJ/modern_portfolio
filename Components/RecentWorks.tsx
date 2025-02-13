@@ -1,4 +1,5 @@
 import { Badge } from "./ui/badge";
+import React from "react";
 
 function RecentWorks() {
   type WorkProps = {

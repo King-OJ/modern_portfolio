@@ -1,27 +1,27 @@
 "use client";
 import React from "react";
-import { AddProjectType } from "@/utils/types";
+import { ContactFormType } from "@/utils/types";
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 
-function FloatingLabel({
+function ContactFormInputs({
   name,
   label,
   type,
   register,
   errors,
 }: {
-  name: keyof AddProjectType;
+  name: keyof ContactFormType;
   label: string;
   type: string;
-  register: UseFormRegister<AddProjectType>;
-  errors: FieldErrors<AddProjectType>;
+  register: UseFormRegister<ContactFormType>;
+  errors: FieldErrors<ContactFormType>;
 }) {
   if (label) {
     label = label.charAt(0).toLocaleUpperCase() + label.slice(1);
   }
 
   type key = typeof name;
-  type Age = AddProjectType[key];
+  type Age = ContactFormType[key];
 
   return (
     <div className="relative z-0">
@@ -49,4 +49,4 @@ function FloatingLabel({
   );
 }
 
-export default FloatingLabel;
+export default ContactFormInputs;

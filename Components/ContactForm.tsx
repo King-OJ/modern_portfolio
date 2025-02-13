@@ -1,27 +1,17 @@
 "use client";
-
+import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FloatingLabel from "./FloatingLabel";
-import { z } from "zod";
-import { FieldValues, useForm } from "react-hook-form";
-
-const contactFieldSchema = z.object({
-  name: z
-    .string()
-    .min(3, { message: "Name must be at least 3 characters long" }),
-  email: z.string().email({ message: "Please enter a valid email" }),
-  message: z
-    .string()
-    .min(10, { message: "Please enter a more detailed message!" }),
-});
+import { useForm } from "react-hook-form";
+import { contactFormSchema, ContactFormType } from "@/utils/types";
+import ContactFormInputs from "./ContactFormInputs";
 
 function ContactForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FieldValues>({
-    resolver: zodResolver(contactFieldSchema),
+  } = useForm<ContactFormType>({
+    resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -29,7 +19,7 @@ function ContactForm() {
     },
   });
 
-  function onSubmit(values: FieldValues) {
+  function onSubmit(values: ContactFormType) {
     console.log(values);
     console.log("submittted");
   }
@@ -41,14 +31,14 @@ function ContactForm() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="space-y-8 w-full">
-        <FloatingLabel
+        <ContactFormInputs
           register={register}
           type="text"
           label="your name"
           name="name"
           errors={errors}
         />
-        <FloatingLabel
+        <ContactFormInputs
           register={register}
           type="email"
           label="your email"

@@ -1,3 +1,7 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    // Add or modify rules as needed
+    "no-console": "warn" // Example rule to warn on console usage
+  }
 }

@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import ImageLoadingSkeleton from "./ImageLoadingSkeleton";
+import React from "react";
 
 function ProfilePhoto() {
   const [isImageReady, setIsImageReady] = useState(false);

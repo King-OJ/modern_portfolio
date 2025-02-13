@@ -23,14 +23,6 @@ export type NavLinks = {
   path: string;
 };
 
-const maxFileSize = 5 * 1024 * 1024; // 5MB
-const allowedImageMimeTypes = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
-];
-
 export const addProjectSchema = z.object({
   title: z
     .string()
@@ -65,5 +57,17 @@ export interface PaginatedResponse {
   hasNextPage: boolean;
   hasPrevPage: boolean;
 }
+
+export const contactFormSchema = z.object({
+  name: z
+    .string()
+    .min(3, { message: "Name must be at least 3 characters long" }),
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  message: z
+    .string()
+    .min(3, { message: "Please provide a more detailed message" }),
+});
+
+export type ContactFormType = z.infer<typeof contactFormSchema>;
 
 export type AddProjectType = z.infer<typeof addProjectSchema>;

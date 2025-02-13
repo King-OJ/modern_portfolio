@@ -1,5 +1,4 @@
 import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 import RoundedCornerImg from "./RoundedCornerImg";
 import { ProjectDetails } from "@/utils/types";
 
@@ -18,7 +17,7 @@ function MobileProjectCard({ project }: { project: ProjectDetails }) {
 
       <div className="mt-10 flex-1 w-full flex justify-center items-center relative">
         <div className="w-72 h-full shadow-md relative rounded-tl-2xl rounded-tr-2xl overflow-hidden">
-          <RoundedCornerImg src="/assets/mobile-app-pic.png" position="top" />
+          <RoundedCornerImg src={project.imageUrls[0]} position="top" />
         </div>
       </div>
     </div>
