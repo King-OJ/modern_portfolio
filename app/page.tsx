@@ -11,12 +11,13 @@ import { Button } from "@/Components/ui/button";
 import prisma from "@/utils/db";
 import { Plus, Copy, CodeXml, Brush, MonitorSmartphone } from "lucide-react";
 import Link from "next/link";
+import { Prisma } from "@prisma/client";
 
 export default async function Home() {
   const projects = await prisma.project.findMany({
     where: {
       showcase: true,
-    },
+    } as Prisma.ProjectWhereInput,
     orderBy: {
       createdAt: "desc",
     },
