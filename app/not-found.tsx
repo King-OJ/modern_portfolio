@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import errorImg from "../public/assets/undraw_page-not-found_6wni.svg";
+import React from "react";
 
 export default function NotFound() {
   return (
