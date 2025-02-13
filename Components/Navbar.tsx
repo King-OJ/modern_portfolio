@@ -13,7 +13,7 @@ function Navbar() {
     { title: "portfolio", path: "/portfolio" },
     { title: "contact", path: "/contact" },
   ];
-  const [lastScrollY, setLastScrollY] = useState<Number>(0);
+  const [lastScrollY, setLastScrollY] = useState<number>(0);
   const [isNavbarVisible, setIsNavbarVisible] = useState<boolean>(true);
   const [isImageReady, setIsImageReady] = useState(false);
 
