@@ -13,7 +13,7 @@ interface PageProps {
 }
 
 async function PortfolioPage({ searchParams }: PageProps) {
-  const { page } = await searchParams;
+  const page = await searchParams.page;
   const currentPage = Number(page) || 1;
   const limit = 4;
 
