@@ -7,13 +7,11 @@ import prisma from "@/utils/db";
 import { ProjectDetails } from "@/utils/types";
 
 interface PageProps {
-  searchParams: {
-    page?: Promise<string>;
-  };
+  searchParams: Promise<{ page: string }>;
 }
 
 async function PortfolioPage({ searchParams }: PageProps) {
-  const page = await searchParams.page;
+  const { page } = await searchParams;
   const currentPage = Number(page) || 1;
   const limit = 4;
 
