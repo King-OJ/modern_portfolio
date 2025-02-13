@@ -1,7 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import RoundedCornerImg from "./RoundedCornerImg";
 import { ProjectDetails } from "@/utils/types";
-
+import React from "react";
 function MobileProjectCard({ project }: { project: ProjectDetails }) {
   return (
     <div className="px-6 pt-8 rounded-xl border flex flex-col h-full items-center bg-muted">

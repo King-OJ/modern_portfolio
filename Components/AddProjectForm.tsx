@@ -6,7 +6,7 @@ import ImagePreview from "./ImagePreview";
 import { useToast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import { Checkbox } from "./ui/checkbox";
@@ -100,7 +100,7 @@ function AddProjectForm() {
 
       try {
         const uploadPromises = acceptedFiles.map((file) =>
-          uploadToServer(file)
+          uploadToServer(file),
         );
         const totalFiles = acceptedFiles.length;
         let completedUploads = 0;
@@ -111,8 +111,8 @@ function AddProjectForm() {
               completedUploads++;
               setUploadProgress((completedUploads / totalFiles) * 100);
               return url;
-            })
-          )
+            }),
+          ),
         );
 
         setValue("imageUrls", [...imageUrls, ...urls], {
@@ -127,7 +127,7 @@ function AddProjectForm() {
         setUploadProgress(0);
       }
     },
-    [setValue, imageUrls, typeValue]
+    [setValue, imageUrls, typeValue],
   );
 
   const { isDragActive, getRootProps, getInputProps } = useDropzone({

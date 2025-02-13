@@ -12,9 +12,10 @@ import prisma from "@/utils/db";
 import { Plus, Copy, CodeXml, Brush, MonitorSmartphone } from "lucide-react";
 import Link from "next/link";
 import { Prisma } from "@prisma/client";
+import { ProjectDetails } from "@/utils/types";
 
 export default async function Home() {
-  const projects = await prisma.project.findMany({
+  const projects: ProjectDetails[] = await prisma.project.findMany({
     where: {
       showcase: true,
     } as Prisma.ProjectWhereInput,
@@ -23,7 +24,9 @@ export default async function Home() {
     },
   });
 
-  const webProjects = projects.filter((project) => project.type == "WebApp");
+  const webProjects = projects.filter(
+    (project: ProjectDetails) => project.type == "WebApp",
+  );
   const mobileProjects = projects.filter(
     (project) => project.type == "MobileApp",
   );

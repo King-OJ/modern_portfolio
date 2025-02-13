@@ -20,9 +20,6 @@ function ContactFormInputs({
     label = label.charAt(0).toLocaleUpperCase() + label.slice(1);
   }
 
-  type key = typeof name;
-  type Age = ContactFormType[key];
-
   return (
     <div className="relative z-0">
       <input
