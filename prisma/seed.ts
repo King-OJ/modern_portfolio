@@ -197,10 +197,18 @@ const projectData = [
 ];
 
 async function main() {
-  for (const project of projectData) {
-    await prisma.project.create({ data: project });
-  }
-  console.log("data sent to db");
+  // for (const project of projectData) {
+  //   await prisma.project.create({ data: project });
+  // }
+  await prisma.project.update({
+    where: {
+      id: 12
+    },
+    data: {
+      title: "Media X"
+    }
+  })
+  console.log("data sent to db updated");
 }
 
 main()
