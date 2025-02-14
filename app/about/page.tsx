@@ -71,7 +71,7 @@ function AboutPage() {
                 Best developer concepts
               </h5>
               <p className="text-sm leading-6 md:leading-7">
-                With great attention to detail and documentations, I can effectively use Data Models, Object Relational Models such as Mongoose and Prisma, variety of State management and validation tools including Zod, Tanstack Query, Zustand and Redux Toolkit. I'm experienced in API routing, API calls and testing with Postman, setting proper HTTP requests and responses, middlewares, authentication and authorization.
+                With great attention to detail and documentations, I can effectively use Data Models, Object Relational Models such as Mongoose and Prisma, variety of State management and validation tools including Zod, Tanstack Query, Zustand and Redux Toolkit. I am experienced in API routing, API calls and testing with Postman, setting proper HTTP requests and responses, middlewares, authentication and authorization.
               </p>
             </div>
             <GradientLine />
