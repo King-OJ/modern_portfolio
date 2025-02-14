@@ -4,6 +4,7 @@ import whatsappIcon from "@/public/assets/icons8-whatsapp.svg";
 import xIcon from "@/public/assets/icons8-x.svg";
 import Image from "next/image";
 import ContactForm from "@/Components/ContactForm";
+import Link from "next/link";
 
 function ContactPage() {
   return (
@@ -18,24 +19,28 @@ function ContactPage() {
         <ul className="space-y-8 text-sm md:text-base">
           <li className="flex items-center space-x-2">
             <Mail />
-            <a href="">dummy@gmsil.com</a>
+            <a href="mailto:clementojigs@hotmail.com">clementojigs@hotmail.com</a>
           </li>
           <li className="flex items-center space-x-2">
             <Phone />
-            <a href="">+234-80-6382-4618</a>
+            <a href="tel:+2348063824618">+234-80-6382-4618</a>
           </li>
           <li className="flex items-center space-x-2">
             <MapPin />
-            <a href="">Nigeria, Africa.</a>
+            <div>Nigeria, Africa.</div>
           </li>
         </ul>
 
         <ul className="space-x-4 flex items-center">
           <li className="">
-            <Image src={whatsappIcon} alt={"whatsapp"} />
+            <Link href="https://wa.me/2348063824618" target="_blank">
+              <Image src={whatsappIcon} alt={"whatsapp"} />
+            </Link>
           </li>
           <li className="">
+            <Link href="https://x.com/talk2clemzy?s=21&t=s9kG0KcIHmU1_eOP4aWRMQ" target="_blank">
             <Image src={xIcon} alt={"x-app"} />
+            </Link>
           </li>
         </ul>
       </div>

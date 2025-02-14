@@ -7,12 +7,12 @@ import { BottomProjectCard, TopProjectCard } from "@/Components/ProjectCard";
 import ProjectInfo from "@/Components/ProjectInfo";
 import RecentWorks from "@/Components/RecentWorks";
 import { Badge } from "@/Components/ui/badge";
-import { Button } from "@/Components/ui/button";
 import prisma from "@/utils/db";
-import { Plus, Copy, CodeXml, Brush, MonitorSmartphone } from "lucide-react";
+import { Plus, CodeXml, Brush, MonitorSmartphone } from "lucide-react";
 import Link from "next/link";
 import { Prisma } from "@prisma/client";
 import { ProjectDetails } from "@/utils/types";
+import CopyEmailButton from "@/Components/CopyEmailButton";
 
 export default async function Home() {
   const projects: ProjectDetails[] = await prisma.project.findMany({
@@ -68,9 +68,7 @@ export default async function Home() {
                     <Plus size={19} />
                   </span>
                 </Link>
-                <Button size={"sm"} variant={"ghost"} className="bg-background">
-                  Copy Email <Copy />
-                </Button>
+                <CopyEmailButton />
               </div>
             </div>
 

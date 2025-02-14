@@ -5,9 +5,9 @@ import { Badge } from "./ui/badge";
 
 function Footer() {
   const socialLinks: Array<{ title: string; href: string }> = [
-    { title: "GitHub", href: "#" },
-    { title: "LinkedIn", href: "#" },
-    { title: "Whatsapp", href: "#" },
+    { title: "GitHub", href: "https://github.com/King-OJ" },
+    { title: "LinkedIn", href: "https://www.linkedin.com/in/clement-ojiguo-4912911aa?" },
+    { title: "Whatsapp", href: "https://wa.me/2348063824618" },
   ];
   return (
     <div className="mt-6">
@@ -59,7 +59,7 @@ function Footer() {
                       key={index}
                       className={index == 0 ? "text-primary" : ""}
                     >
-                      <Link href={link.href}>{link.title}</Link>
+                      <Link target="_blank" href={link.href}>{link.title}</Link>
                     </li>
                   );
                 })}
