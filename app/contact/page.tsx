@@ -44,7 +44,7 @@ function ContactPage() {
           </li>
         </ul>
       </div>
-      <div className="w-full h-[80vh] md:h-[80vh] flex flex-col justify-center md:max-w-4xl md:mx-auto">
+      <div className="w-full min-h-[800px] flex flex-col justify-center md:max-w-4xl md:mx-auto">
         <h2 className="text-2xl font-extrabold my-4 md:my-8 ">Contact Me</h2>
         <div className="h-[500px] md:h-[600px] w-full">
           <div className="relative w-full h-full">
@@ -75,24 +75,28 @@ function ContactPage() {
                   <ul className="space-y-8">
                     <li className="flex items-center space-x-2">
                       <Mail />
-                      <a href="">dummy@gmsil.com</a>
+                      <a href="mailto:clementojigs@hotmail.com">clementojigs@hotmail.com</a>
                     </li>
                     <li className="flex items-center space-x-2">
                       <Phone />
-                      <a href="">+234-80-6382-4618</a>
+                      <a href="tel:+2348063824618">+234-80-6382-4618</a>
                     </li>
                     <li className="flex items-center space-x-2">
                       <MapPin />
-                      <a href="">Nigeria, Africa.</a>
+                      <div>Nigeria, Africa.</div>
                     </li>
                   </ul>
 
                   <ul className="space-x-4 flex items-center">
                     <li className="">
-                      <Image src={whatsappIcon} alt={"whatsapp"} />
+                       <Link href="https://wa.me/2348063824618" target="_blank">
+              <Image src={whatsappIcon} alt={"whatsapp"} />
+            </Link>
                     </li>
                     <li className="">
-                      <Image src={xIcon} alt={"x-app"} />
+                      <Link href="https://x.com/talk2clemzy?s=21&t=s9kG0KcIHmU1_eOP4aWRMQ" target="_blank">
+            <Image src={xIcon} alt={"x-app"} />
+            </Link>
                     </li>
                   </ul>
                 </div>

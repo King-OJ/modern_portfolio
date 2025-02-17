@@ -1,14 +1,20 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { contactFormSchema, ContactFormType } from "@/utils/types";
 import ContactFormInputs from "./ContactFormInputs";
+import { useToast } from "@/hooks/use-toast";
+import axios from "axios";
 
 function ContactForm() {
+
+  const {toast} = useToast()
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ContactFormType>({
     resolver: zodResolver(contactFormSchema),
@@ -19,15 +25,27 @@ function ContactForm() {
     },
   });
 
-  function onSubmit(values: ContactFormType) {
-    console.log(values);
-    console.log("submittted");
+  async function onSubmit(values: ContactFormType) {
+    setIsLoading(true)
+       await axios.post('/api/contact', values )
+       .then((result)=> {
+        if(result.data.success){
+          toast({ title: `Message sent succesfully!` })
+          setIsLoading(false)
+          reset()
+        }
+       })
+       .catch((error)=> {
+        console.log(error);
+        toast({variant: "destructive", title: error.response.data.error })
+          setIsLoading(false)
+       })
   }
 
   return (
     <form
       action=""
-      className="text-black h-full  rounded-xl py-4 flex items-center"
+      className="text-black h-full  rounded-xl py-2 flex items-center"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="space-y-8 w-full">
@@ -67,8 +85,9 @@ function ContactForm() {
         <button
           type="submit"
           className="w-full bg-primary text-white font-bold max-w-md mx-auto"
+          disabled={isLoading}
         >
-          Send message
+          {isLoading ? 'Sending...' : 'Send Message'}
         </button>
       </div>
     </form>
